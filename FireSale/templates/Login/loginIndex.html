@@ -1,0 +1,13 @@
+{% extends 'base_login.html' %}
+{% block content %}
+    <div class="loginContainer">
+        <label for="uname"><b>Username:</b></label>
+        <input type="text" name="uname" required>
+        <label for="pword"><b>Password:</b></label>
+        <input type="password" name="pword" required>
+        <button type="submit">Login</button>
+    </div>
+    <div class="Forgotpwd">
+        <span class="pword"><a href="">Forgot password</a></span>
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base_login.html' %}
+{% block content %}
+    <div class="registerContainer">
+        <label for="uname"><b>Username:</b></label>
+        <input type="text" name="uname" required
+        <label for="email"><b>Email:</b></label>
+        <input type="text" name="email" required>
+        <label for="pword"><b>Password:</b></label>
+        <input type="password" name="pword" required>
+        <label for="phonenum"><b>Phone number:</b></label>
+        <input type="tel" name="phonenum" required>
+        <div class="regAddress">
+            <label for="address"><b>Address:</b></label>
+            <input type="text" name="addres" required>
+            <label for="pCode"><b>Post code:</b></label>
+            <input type="text" name="pCode" required>
+        </div>
+            <label for="dob"><b>Date of birth:</b></label>
+            <input type="date" name="dob" required>
+        <button type="submit">Register</button>
+    </div>
+
+{% endblock %}
