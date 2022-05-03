@@ -1,0 +1,18 @@
+{% extends 'headers/base_header.html' %}
+{% block content %}
+    <h2>New product:</h2>
+    <div class="productContainer">
+        <label for="name">Name:</label>
+        <input type="text" name="name" required> <br>
+        <label for="price">Price:</label>
+        <input type="text" name="price" required> <br>
+        <label for="condition">Condition:</label>
+        <input type="text" name="condition" required> <br>
+        <label for="description">Description:</label>
+        <input type="text" name="description" required> <br>
+        <label for="Location">Location:</label>
+        <input type="text" name="location" required> <br>
+        <label for="img">Image:</label>
+        <button class="insertImg">Add image</button>
+    </div>
+{% endblock %}
