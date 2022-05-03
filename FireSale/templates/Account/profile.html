@@ -1,0 +1,20 @@
+{% extends 'headers/base_header.html' %}
+{% block content %}
+    <h1>My Profile</h1>
+    <div class="profileContainer">
+        <div id="profileImg">
+            <!-- add img here -->
+        </div>
+        <div class="profileInfo">
+            <label for="uName">Username:</label>
+            <p id="uName"></p>
+            <label for="location">Location:</label>
+            <p id="location"></p>
+        </div>
+        <div class="profileBio">
+            <label for="bio">Bio:</label>
+            <textarea id="bio"></textarea>
+        </div>
+        <button type="button" id="editProfile">Edit Profile</button>
+    </div>
+{% endblock %}
