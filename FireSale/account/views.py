@@ -9,3 +9,6 @@ def register(request):
 
 def profile(request):
     return render(request, 'Account/profile.html')
+
+def editprofile(request):
+    return render(request, 'Account/editprofile.html')
