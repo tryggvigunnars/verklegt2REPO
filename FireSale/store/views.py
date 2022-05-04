@@ -13,7 +13,7 @@ def browse(request):
         return render(request,'store/product/item.html', context={'item_info': item_info, 'extension': 'store/product/browsing.html'})
 
 def itemDetails(request):
-    return render(request, 'store/product/item.html', context={'item_info': item_info, 'extension': 'store/product/itemDetails.htm'})
+    return render(request, 'store/product/item.html', context={'item_info': item_info, 'extension': 'store/product/itemDetails.html'})
 
 
 def sellProduct(request):
