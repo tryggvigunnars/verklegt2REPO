@@ -20,11 +20,11 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="#">Browse products</a>
+                      <a class="nav-link active" aria-current="page" href="{% url 'browseItems' %}">Browse products</a>
                   </li>
 
                   <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="#">Sell products</a>
+                      <a class="nav-link active" aria-current="page" href="{% url 'sellProduct' %}">Sell products</a>
                   </li>
 
                   <li class="nav-item">
@@ -36,11 +36,11 @@
                     Menu
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">My profile</a></li>
+                    <li><a class="dropdown-item" href="{% url 'profile' %}">My profile</a></li>
                     <li><a class="dropdown-item" href="#">My listings</a></li>
                     <li><a class="dropdown-item" href="#">My bids</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Log-Out</a></li>
+                    <li><a class="dropdown-item" href="{% url 'login' %}">Log-Out</a></li>
                   </ul>
                 </li>
               </ul>
