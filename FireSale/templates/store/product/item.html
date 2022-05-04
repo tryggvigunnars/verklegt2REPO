@@ -1,23 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends '' %}
+
+{% for info in item_info %}
+{% block content %}
     <div class="item">
-        <div class="itemPicture"> <img src="" alt="itemPic"></div>
+        <div class="itemPicture"> <img src="{{ info.img }}" alt="itemPic"></div>
         <div class="itemInfo">
-            <h1 class="productName"></h1>
-            <h3 class="sellerName"></h3>
-            <h3 class="sellerLocation"></h3>
+            <h1 class="productName">{{ info.productName }}</h1>
+            <h3 class="sellerName">{{ info.seller }}</h3>
+            <h3 class="sellerLocation">{{ info.location }}</h3>
         </div>
         <div class="itemInfo2">
-            <h1 class="listingPrice"></h1>
+            <h1 class="listingPrice">{{ info.price }}</h1>
             <button>View product details</button>
         </div>
     </div>
-</body>
-</html>
+{% endblock %}
+{% endfor %}
