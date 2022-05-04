@@ -1,7 +1,7 @@
-{% extends '' %}
+{% extends extension %}
 
+{% block content1 %}
 {% for info in item_info %}
-{% block content %}
     <div class="item">
         <div class="itemPicture"> <img src="{{ info.img }}" alt="itemPic"></div>
         <div class="itemInfo">
@@ -14,5 +14,5 @@
             <button>View product details</button>
         </div>
     </div>
-{% endblock %}
 {% endfor %}
+{% endblock %}
