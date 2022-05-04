@@ -6,7 +6,6 @@ from django.shortcuts import render
 def item(request):
         return render(request,'store/product/item.html')
 
-
 def itemDetails(request):
     return render(request, 'store/product/itemDetails.html')
 
