@@ -9,11 +9,11 @@ item_info = [
     {'img': '', 'productName': 'Scooter', 'seller': 'Nilli', 'location': 'Reykjavík', 'price': 80000}
 ]
 
-def item(request):
-        return render(request,'store/product/item.html', context={'item_info': item_info})
+def browse(request):
+        return render(request,'store/product/item.html', context={'item_info': item_info, 'extension': 'store/product/browsing.html'})
 
 def itemDetails(request):
-    return render(request, 'store/product/itemDetails.html')
+    return render(request, 'store/product/item.html', context={'item_info': item_info, 'extension': 'store/product/itemDetails.html'})
 
 
 def sellProduct(request):
@@ -22,5 +22,3 @@ def sellProduct(request):
 def pay(request):
     return render(request, 'store/payment/pay.html')
 
-def browse(request):
-    return render(request, 'store/product/browsing.html')
