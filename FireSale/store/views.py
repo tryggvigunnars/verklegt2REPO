@@ -27,3 +27,6 @@ def sellProduct(request):
 def pay(request):
     return render(request, 'store/payment/pay.html')
 
+def reviewPayment(request):
+    return render(request, 'store/payment/reviewPayment.html')
+
