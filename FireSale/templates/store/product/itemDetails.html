@@ -1,6 +1,7 @@
 {% extends 'headers/base_header.html' %}
 {% block content %}
 
+    {% for detail in item_details %}
     <body>
         <div class="fullItemView">
             <div class="itempicture"> <img src="" alt=""></div>
@@ -13,16 +14,22 @@
                 </form>
             </div>
             <div class="itemDetails">
-                <p class="productName">product name: </p>
-                <p class="seller">seller:  </p>
-                <p class="condition">condition:   </p>
-                <p class="highestOffer">highest offer:   </p>
-                <p class="location">location:   </p>
-                <p class="sellersPrice">Sellers price:   </p>
+                <label for="productName">Product name: </label>
+                <p id="productName">{{ detail.productName }}</p>
+                <label for="seller">Seller:  </label>
+                <p id="seller">{{ detail.seller }}</p>
+                <label for="condition">Condition:   </label>
+                <p id="condition">{{ detail.condition }}</p>
+                <label for="highestOffer">Highest offer:   </label>
+                <p id="highestOffer">{{ detail.highestOffer }}</p>
+                <label for="location">Location:   </label>
+                <p id="location">{{ detail.location }}</p>
+                <label for="sellersPrice">Sellers price:   </label>
+                <p id="sellersPrice">{{ detail.price }}</p>
             </div>
             <div class="productDescription">
-                <p>Product description</p>
-                <div class="txtBox"></div>
+                <label for="description">Product description</label>
+                <div class="txtBox">{{ detail.description }}</div>
             </div>
         </div>
         <div class="relatedSearches">
@@ -31,4 +38,5 @@
             {% endblock %}
         </div>
     </body>
+    {% endfor %}
 {% endblock %}
