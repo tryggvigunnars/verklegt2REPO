@@ -1,0 +1,19 @@
+{% extends 'headers/base_header.html' %}
+{% block content %}
+    <div class="profileContainer">
+        <div id="profileImg">
+            <!-- add img here -->
+        </div>
+        <div class="profileInfo">
+            <label for="uName">Username:</label>
+            <input type="text" name="uName" required>
+            <label for="Location">Location:</label>
+            <input type="text" name="Location" required>
+        </div>
+        <div class="profileBio">
+            <label for="bio">Bio:</label>
+            <textarea id="bio"></textarea>
+        </div>
+        <button type="button" id="saveProfilechanges">Save changes</button>
+    </div>
+{% endblock %}
