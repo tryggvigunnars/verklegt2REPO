@@ -1,8 +1,9 @@
 from django.shortcuts import render
+from account.models import *
 
 
 # Create your views here.
-
+"""
 items = [
     {'img': '', 'productName': 'Bike', 'seller': 'Kalli', 'location': 'Reykjavík', 'price': 3000},
     {'img': '', 'productName': 'Car', 'seller': 'Páll', 'location': 'Reykjavík', 'price': 5000},
@@ -12,10 +13,11 @@ items = [
 item_details = [
     {'img': '', 'productName': 'Bike', 'seller': 'Kalli', 'location': 'Reykjavík', 'price': 3000}
 ]
-
+"""
 
 def browse(request):
-    return render(request, 'store/product/browsing.html', context={'items': items})
+    items = {'items': Item.objects.all()}
+    return render(request, 'store/product/browsing.html', items)
 
 
 def item(request):
@@ -23,8 +25,8 @@ def item(request):
 
 
 def itemDetails(request):
-    return render(request, 'store/product/itemDetails.html', context={'item_details': item_details,
-                                                                       'items': items})
+    context = {'detail': Item.objects.get(item_name__icontains='violet monster'), 'items': Item.objects.all()}
+    return render(request, 'store/product/itemDetails.html', context)
 
 
 def sellProduct(request):

@@ -1,7 +1,5 @@
 {% extends 'headers/base_header.html' %}
 {% block content %}
-
-    {% for detail in item_details %}
     <body>
         <div class="fullItemView">
             <div class="itempicture"> <img src="" alt=""></div>
@@ -15,13 +13,13 @@
             </div>
             <div class="itemDetails">
                 <label for="productName">Product name: </label>
-                <p id="productName">{{ detail.productName }}</p>
+                <p id="productName">{{ detail.item_name }}</p>
                 <label for="seller">Seller:  </label>
-                <p id="seller">{{ detail.seller }}</p>
+                <p id="seller">{{ detail.user }}</p>
                 <label for="condition">Condition:   </label>
                 <p id="condition">{{ detail.condition }}</p>
                 <label for="highestOffer">Highest offer:   </label>
-                <p id="highestOffer">{{ detail.highestOffer }}</p>
+                <p id="highestOffer"></p>
                 <label for="location">Location:   </label>
                 <p id="location">{{ detail.location }}</p>
                 <label for="sellersPrice">Sellers price:   </label>
@@ -39,5 +37,4 @@
             {% endfor %}
         </div>
     </body>
-    {% endfor %}
 {% endblock %}
