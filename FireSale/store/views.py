@@ -10,7 +10,7 @@ item_info = [
 ]
 
 def item(request):
-        return render(request,'store/product/item.html', context={'item_info': item_info})
+        return render(request, 'store/product/browsingItem.html', context={'item_info': item_info})
 
 def itemDetails(request):
     return render(request, 'store/product/itemDetails.html')
