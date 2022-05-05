@@ -8,7 +8,10 @@ class UserInfo(models.Model):
     phone_number = models.IntegerField()
     address = models.CharField(max_length=255)
     zip = models.IntegerField()
-    dob = models.DateTimeField()
+    dob = models.DateField()
+
+    def __str__(self):
+        return str(self.phone_number)
 
 
 class Profile(models.Model):
