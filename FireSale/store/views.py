@@ -13,7 +13,6 @@ item_details = [
     {'img': '', 'productName': 'Bike', 'seller': 'Kalli', 'location': 'Reykjavík', 'price': 3000}
 ]
 
-
 def browse(request):
     return render(request, 'store/product/browsingItem.html', context={'items': items,
                                                                        'extension': 'store/product/browsing.html'})
@@ -39,3 +38,8 @@ def pay(request):
 
 def reviewPayment(request):
     return render(request, 'store/payment/reviewPayment.html')
+
+
+def rateSeller(request):
+    return render(request, 'store/payment/sellerRating.html')
+

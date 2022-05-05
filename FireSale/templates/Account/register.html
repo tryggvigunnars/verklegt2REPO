@@ -1,5 +1,65 @@
-{% extends 'headers/login_header.html' %}
+{% extends 'headers/base_header.html' %}
+{% load static %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/registerStyle.css'  %}"/>
+
+<h1>Register</h1>
+<div class="registerDiv">
+
+</div>
+
+<div class="container">
+    <div class="box-2">
+        <div class="box-inner-2">
+            <div>
+                <p class="fw-bold">Contact info</p>
+                <p class="dis mb-3">Enter yor contact information here:</p>
+            </div>
+            <form action="">
+                <div class="mb-3">
+                    <p class="dis fw-bold mb-2">Username:</p>
+                    <input class="form-control" type="name">
+                </div>
+
+                <div class="mb-3">
+                    <p class="dis fw-bold mb-2">Email:</p>
+                    <input class="form-control" type="email">
+                </div>
+
+                <div class="mb-3">
+                    <p class="dis fw-bold mb-2">Password:</p>
+                    <input class="form-control" type="password">
+                </div>
+
+                <div class="mb-3">
+                    <p class="dis fw-bold mb-2">Phone number:</p>
+                    <input class="form-control" type="phonenumber">
+                </div>
+
+                <div class="mb-3">
+                    <p class="dis fw-bold mb-2">Address:</p>
+                    <input class="form-control" type="address">
+                </div>
+
+                <div class="mb-3">
+                    <p class="dis fw-bold mb-2">Postal code:</p>
+                    <input class="form-control" type="postalCode">
+                </div>
+
+                <div class="mb-3">
+                    <p class="dis fw-bold mb-2">Date of birth:</p>
+                    <input class="form-control" type="date">
+                </div>
+
+
+                <div class="btn btn-primary mt-2">Register<span class="fas fa-dollar-sign px-1"></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
     <div class="registerContainer">
         <label for="uname"><b>Username:</b></label>
         <input type="text" id="uname" required>
@@ -20,4 +80,4 @@
         <button type="submit">Register</button>
     </div>
 
-{% endblock %}
+
