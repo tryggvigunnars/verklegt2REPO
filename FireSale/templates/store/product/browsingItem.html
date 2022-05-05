@@ -1,10 +1,5 @@
-{% extends extension %}
 {% load static %}
-{% block items %}
 <link rel="stylesheet" href="{% static 'css/ItemStyle.css' %}"/>
-
-
-{% for info in items %}
     <div class="item">
         <div class="itemPicture"> <img src="{{ info.img }}" alt="itemPic"></div>
         <div class="itemInfo">
@@ -14,8 +9,7 @@
         </div>
         <div class="itemInfo2">
             <h1 class="listingPrice">{{ info.price }} kr.</h1>
-            <button>View product details</button>
+            <button><a href="{% url 'itemDetails' %}"> product details</a></button>
         </div>
     </div>
-{% endfor %}
-{% endblock %}
+
