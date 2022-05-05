@@ -1,7 +1,7 @@
-{% extends '' %}
+{% extends extension %}
 
-{% for info in item_info %}
-{% block content %}
+{% block items %}
+{% for info in items %}
     <div class="item">
         <div class="itemPicture"> <img src="{{ info.img }}" alt="itemPic"></div>
         <div class="itemInfo">
@@ -11,8 +11,8 @@
         </div>
         <div class="itemInfo2">
             <h1 class="listingPrice">{{ info.price }}</h1>
-            <button>View product details</button>
+            <button><a href="{% url 'itemDetails' %}">View product details</a></button>
         </div>
     </div>
-{% endblock %}
 {% endfor %}
+{% endblock %}
