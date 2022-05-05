@@ -9,8 +9,15 @@ item_info = [
     {'img': '', 'productName': 'Scooter', 'seller': 'Nilli', 'location': 'Reykjavík', 'price': 80000}
 ]
 
+
+def browse(request):
+    return render(request, 'store/product/browsingItem.html', context={'item_info': item_info,
+                                                                       'extension': 'store/product/browsing.html'})
+
+
 def item(request):
-        return render(request, 'store/product/browsingItem.html', context={'item_info': item_info})
+    return render(request, 'store/product/browsingItem.html', context={'item_info': item_info})
+
 
 def itemDetails(request):
     return render(request, 'store/product/itemDetails.html')
@@ -19,8 +26,10 @@ def itemDetails(request):
 def sellProduct(request):
     return render(request, 'store/product/sell.html')
 
+
 def pay(request):
     return render(request, 'store/payment/pay.html')
+
 
 def reviewPayment(request):
     return render(request, 'store/payment/reviewPayment.html')
@@ -30,3 +39,4 @@ def browse(request):
 
 def rateSeller(request):
     return render(request, 'store/payment/sellerRating.html')
+

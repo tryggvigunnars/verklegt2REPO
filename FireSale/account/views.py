@@ -1,6 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
+
+user_info = [
+    {'name': 'Kalli', }
+]
+
 def login(request):
     return render(request, 'Account/login.html')
 
