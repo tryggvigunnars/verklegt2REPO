@@ -1,4 +1,4 @@
-{% extends 'headers/base_header.html' %}
+{% extends 'headers/login_header.html' %}
 {% load static %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/registerStyle.css'  %}"/>
@@ -60,24 +60,5 @@
 </div>
 
 {% endblock %}
-    <div class="registerContainer">
-        <label for="uname"><b>Username:</b></label>
-        <input type="text" id="uname" required>
-        <label for="email"><b>Email:</b></label>
-        <input type="text" id="email" required>
-        <label for="pword"><b>Password:</b></label>
-        <input type="password" id="pword" required>
-        <label for="phonenum"><b>Phone number:</b></label>
-        <input type="tel" id="phonenum" required>
-        <div class="regAddress">
-            <label for="address"><b>Address:</b></label>
-            <input type="text" id="address" required>
-            <label for="pCode"><b>Post code:</b></label>
-            <input type="text" id="pCode" required>
-        </div>
-            <label for="dob"><b>Date of birth:</b></label>
-            <input type="date" id="dob" required>
-        <button type="submit">Register</button>
-    </div>
 
 

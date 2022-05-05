@@ -3,24 +3,29 @@ from django.shortcuts import render
 
 # Create your views here.
 
-item_info = [
+items = [
     {'img': '', 'productName': 'Bike', 'seller': 'Kalli', 'location': 'Reykjavík', 'price': 3000},
     {'img': '', 'productName': 'Car', 'seller': 'Páll', 'location': 'Reykjavík', 'price': 5000},
     {'img': '', 'productName': 'Scooter', 'seller': 'Nilli', 'location': 'Reykjavík', 'price': 80000}
 ]
 
+item_details = [
+    {'img': '', 'productName': 'Bike', 'seller': 'Kalli', 'location': 'Reykjavík', 'price': 3000}
+]
 
 def browse(request):
-    return render(request, 'store/product/browsingItem.html', context={'item_info': item_info,
+    return render(request, 'store/product/browsingItem.html', context={'items': items,
                                                                        'extension': 'store/product/browsing.html'})
 
 
 def item(request):
-    return render(request, 'store/product/browsingItem.html', context={'item_info': item_info})
+    return render(request, 'store/product/browsingItem.html', context={'items': items})
 
 
 def itemDetails(request):
-    return render(request, 'store/product/itemDetails.html')
+    return render(request, 'store/product/browsingItem.html', context={'item_details': item_details,
+                                                                       'items': items,
+                                                                       'extension': 'store/product/itemDetails.html'})
 
 
 def sellProduct(request):
@@ -34,8 +39,6 @@ def pay(request):
 def reviewPayment(request):
     return render(request, 'store/payment/reviewPayment.html')
 
-def browse(request):
-    return render(request, 'store/product/browsing.html')
 
 def rateSeller(request):
     return render(request, 'store/payment/sellerRating.html')
