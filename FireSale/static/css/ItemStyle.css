@@ -1,0 +1,9 @@
+.item {
+    display: flex;
+    flex-direction: row;
+    background-color: whitesmoke;
+    margin: 15px;
+    width: 70%;
+    border: solid black;
+    justify-content: space-around;
+}
