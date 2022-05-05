@@ -1,24 +1,63 @@
-{% extends 'headers/login_header.html' %}
+{% extends 'headers/base_header.html' %}
+{% load static %}
 {% block content %}
-    <div class="registerContainer">
-        <label for="uname"><b>Username:</b></label>
-        <input type="text" name="uname" required>
-        <input type="text" id="uname" required>
-        <label for="email"><b>Email:</b></label>
-        <input type="text" id="email" required>
-        <label for="pword"><b>Password:</b></label>
-        <input type="password" id="pword" required>
-        <label for="phonenum"><b>Phone number:</b></label>
-        <input type="tel" id="phonenum" required>
-        <div class="regAddress">
-            <label for="address"><b>Address:</b></label>
-            <input type="text" id="address" required>
-            <label for="pCode"><b>Post code:</b></label>
-            <input type="text" id="pCode" required>
+<link rel="stylesheet" href="{% static 'css/registerStyle.css'  %}"/>
+
+<h1>Register</h1>
+<div class="registerDiv">
+
+</div>
+
+<div class="container">
+    <div class="box-2">
+        <div class="box-inner-2">
+            <div>
+                <p class="fw-bold">Contact info</p>
+                <p class="dis mb-3">Enter yor contact information here:</p>
+            </div>
+            <form action="">
+                <div class="mb-3">
+                    <p class="dis fw-bold mb-2">Userame:</p>
+                    <input class="form-control" type="name">
+                </div>
+
+                <div class="mb-3">
+                    <p class="dis fw-bold mb-2">Email:</p>
+                    <input class="form-control" type="email">
+                </div>
+
+                <div class="mb-3">
+                    <p class="dis fw-bold mb-2">Password:</p>
+                    <input class="form-control" type="password">
+                </div>
+
+                <div class="mb-3">
+                    <p class="dis fw-bold mb-2">Phone number:</p>
+                    <input class="form-control" type="phonenumber">
+                </div>
+
+                <div class="mb-3">
+                    <p class="dis fw-bold mb-2">Address:</p>
+                    <input class="form-control" type="address">
+                </div>
+
+                <div class="mb-3">
+                    <p class="dis fw-bold mb-2">Postal code:</p>
+                    <input class="form-control" type="postalCode">
+                </div>
+
+                <div class="mb-3">
+                    <p class="dis fw-bold mb-2">Date of birth:</p>
+                    <input class="form-control" type="date">
+                </div>
+
+
+                <div class="btn btn-primary mt-2">Register<span class="fas fa-dollar-sign px-1"></span>
+                </div>
+            </form>
         </div>
-            <label for="dob"><b>Date of birth:</b></label>
-            <input type="date" id="dob" required>
-        <button type="submit">Register</button>
     </div>
+</div>
 
 {% endblock %}
+
