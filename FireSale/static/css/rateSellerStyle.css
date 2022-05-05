@@ -1,0 +1,4 @@
+.container {
+    flex: border-box;
+    padding: 200 px;
+}
