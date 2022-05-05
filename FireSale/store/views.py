@@ -15,8 +15,7 @@ item_details = [
 
 
 def browse(request):
-    return render(request, 'store/product/browsingItem.html', context={'items': items,
-                                                                       'extension': 'store/product/browsing.html'})
+    return render(request, 'store/product/browsing.html', context={'items': items})
 
 
 def item(request):
@@ -24,9 +23,8 @@ def item(request):
 
 
 def itemDetails(request):
-    return render(request, 'store/product/browsingItem.html', context={'item_details': item_details,
-                                                                       'items': items,
-                                                                       'extension': 'store/product/itemDetails.html'})
+    return render(request, 'store/product/itemDetails.html', context={'item_details': item_details,
+                                                                       'items': items})
 
 
 def sellProduct(request):
