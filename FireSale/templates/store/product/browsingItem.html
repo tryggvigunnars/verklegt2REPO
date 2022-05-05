@@ -1,0 +1,18 @@
+{% extends '' %}
+
+{% for info in item_info %}
+{% block content %}
+    <div class="item">
+        <div class="itemPicture"> <img src="{{ info.img }}" alt="itemPic"></div>
+        <div class="itemInfo">
+            <h1 class="productName">{{ info.productName }}</h1>
+            <h3 class="sellerName">{{ info.seller }}</h3>
+            <h3 class="sellerLocation">{{ info.location }}</h3>
+        </div>
+        <div class="itemInfo2">
+            <h1 class="listingPrice">{{ info.price }}</h1>
+            <button>View product details</button>
+        </div>
+    </div>
+{% endblock %}
+{% endfor %}

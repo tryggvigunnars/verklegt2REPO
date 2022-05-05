@@ -12,3 +12,9 @@ def profile(request):
 
 def editprofile(request):
     return render(request, 'Account/editprofile.html')
+
+def myListings(request):
+    return render(request, 'account/myListings.html')
+
+def myBids(request):
+    return render(request, 'account/myBids.html')
