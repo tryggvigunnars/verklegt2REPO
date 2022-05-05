@@ -27,3 +27,6 @@ def reviewPayment(request):
 
 def browse(request):
     return render(request, 'store/product/browsing.html')
+
+def rateSeller(request):
+    return render(request, 'store/payment/sellerRating.html')
