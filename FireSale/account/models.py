@@ -21,7 +21,7 @@ class Profile(models.Model):
 class Item(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     item_name = models.CharField(max_length=255)
-    price = models.FloatField)
+    price = models.FloatField()
     condition = models.CharField(max_length=255)
     description = models.CharField(max_length=255, blank=True)
     location = models.CharField(max_length=255, blank=True)
