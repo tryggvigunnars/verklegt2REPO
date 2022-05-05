@@ -13,6 +13,7 @@ item_details = [
     {'img': '', 'productName': 'Bike', 'seller': 'Kalli', 'location': 'Reykjavík', 'price': 3000}
 ]
 
+
 def browse(request):
     return render(request, 'store/product/browsingItem.html', context={'items': items,
                                                                        'extension': 'store/product/browsing.html'})

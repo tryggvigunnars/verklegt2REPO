@@ -1,17 +1,20 @@
 {% extends extension %}
-
+{% load static %}
 {% block items %}
+<link rel="stylesheet" href="{% static 'css/ItemStyle.css' %}"/>
+
+
 {% for info in items %}
     <div class="item">
         <div class="itemPicture"> <img src="{{ info.img }}" alt="itemPic"></div>
         <div class="itemInfo">
-            <h1 class="productName">{{ info.productName }}</h1>
-            <h3 class="sellerName">{{ info.seller }}</h3>
-            <h3 class="sellerLocation">{{ info.location }}</h3>
+            <h3 class="productName">Product: {{ info.productName }}</h3>
+            <h6 class="sellerName">Seller name: {{ info.seller }}</h6>
+            <h6 class="sellerLocation">Location: {{ info.location }}</h6>
         </div>
         <div class="itemInfo2">
-            <h1 class="listingPrice">{{ info.price }}</h1>
-            <button><a href="{% url 'itemDetails' %}">View product details</a></button>
+            <h1 class="listingPrice">{{ info.price }} kr.</h1>
+            <button>View product details</button>
         </div>
     </div>
 {% endfor %}
