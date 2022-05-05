@@ -1,17 +1,37 @@
 {% extends 'headers/login_header.html' %}
 {% load static %}
 {% block content %}
-    <div class="loginContainer">
-        <label for="uname"><b>Username:</b></label>
-        <input type="text" id="uname" required>
-        <label for="pword"><b>Password:</b></label>
-        <input type="password" id="pword" required>
-        <button type="submit">Login</button>
+<link rel="stylesheet" href="{% static 'css/registerStyle.css'  %}"/>
+
+<h1>Login</h1>
+<div class="registerDiv">
+
+</div>
+
+<div class="container d-lg-flex">
+    <div class="box-2">
+        <div class="box-inner-2">
+            <div>
+                <p class="fw-bold">Login</p>
+                <p class="dis mb-3">Enter your login information here:</p>
+            </div>
+
+            <form action="">
+                <div class="mb-3">
+                        <p class="dis fw-bold mb-2">Email:</p>
+                        <input class="form-control" type="email">
+                </div>
+
+                <div class="mb-3">
+                    <p class="dis fw-bold mb-2">Password:</p>
+                    <input class="form-control" type="password">
+                </div>
+
+                 <div class="btn btn-primary mt-2">Login<span class="fas fa-dollar-sign px-1"></span>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="registerAccount">
-        <span class="register"><a href="">Register</a></span>
-    </div>
-    <div class="register">
-        <span class="reg"><a href="{% url 'register' %}">Register</a></span>
-    </div>
+</div>
+
 {% endblock %}
