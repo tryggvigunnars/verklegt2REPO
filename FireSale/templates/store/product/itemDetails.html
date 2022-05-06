@@ -2,7 +2,7 @@
 {% block content %}
     <body>
         <div class="fullItemView">
-            <div class="itempicture"> <img src="" alt=""></div>
+            <div class="itempicture"> <img src="{{ item.itemimage_set.first.img }}" alt=""></div>
             <div class="offerDetails">
                 <h3 class="highestOffer">Current Highest offer: </h3>
                 <form action="/action_page.php">
