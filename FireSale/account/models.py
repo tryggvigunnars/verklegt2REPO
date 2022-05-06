@@ -39,3 +39,6 @@ class ItemImage(models.Model):
 class Rating(models.Model):
     User = models.ForeignKey(User, on_delete=models.CASCADE)
     rating = models.IntegerField()
+
+
+

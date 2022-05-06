@@ -3,6 +3,7 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/registerStyle.css'  %}"/>
 
+
 <h1>Login</h1>
 <div class="registerDiv">
 
@@ -16,19 +17,19 @@
                 <p class="dis mb-3">Enter your login information here:</p>
             </div>
 
-            <form action="">
+            <form action="log-in" method="post">
                 <div class="mb-3">
                         <p class="dis fw-bold mb-2">Email:</p>
-                        <input class="form-control" type="email">
+                        <input class="form-control" for="log-in" type="email" value="{{ current_email }}">
                 </div>
 
                 <div class="mb-3">
                     <p class="dis fw-bold mb-2">Password:</p>
-                    <input class="form-control" type="password">
+                    <input class="form-control" for="log-in" type="password" value="{{ current_password }}">
                 </div>
 
-                 <div class="btn btn-primary mt-2">Login<span class="fas fa-dollar-sign px-1"></span>
-                </div>
+                <input class="btn btn-primary mt-2" type="submit" value="Log in">
+
             </form>
         </div>
     </div>
