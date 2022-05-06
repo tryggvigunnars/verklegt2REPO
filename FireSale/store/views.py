@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from account.models import *
+from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
@@ -24,8 +25,8 @@ def item(request):
     return render(request, 'store/product/browsingItem.html', context={'items': items})
 
 
-def itemDetails(request):
-    context = {'detail': Item.objects.get(item_name__icontains='violet monster'), 'items': Item.objects.all()}
+def itemDetails(request, id):
+    context = { 'item': get_object_or_404(Item, pk=id), 'items': Item.objects.all()}
     return render(request, 'store/product/itemDetails.html', context)
 
 
