@@ -299,3 +299,10 @@ input[type="radio"] {
         font-size: 9px;
     }
 }
+
+.register {
+    text-align: left;
+    display: flex;
+}
+
+
