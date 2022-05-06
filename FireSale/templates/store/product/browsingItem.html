@@ -1,7 +1,7 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/ItemStyle.css' %}"/>
     <div class="item">
-        <div class="itemPicture"> <img src="{{ info.img }}" alt="itemPic"></div>
+        <div class="itemPicture"> <img src="{{ info.itemimage_set.first.img }}" style="width: 80px;" ></div>
         <div class="itemInfo">
             <h3 class="productName">Product: {{ info.item_name }}</h3>
             <h6 class="sellerName">Seller name: {{ info.user }}</h6>
@@ -12,4 +12,5 @@
             <button><a href="/store/{{ info.id }}"> product details</a></button>
         </div>
     </div>
+
 

@@ -12,8 +12,12 @@ class UserInfo(models.Model):
     def __str__(self):
         return str(self.user)
 
+class Ratings(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rating = models.IntegerField()
+
 class Profile(models.Model):
-    name = models.ForeignKey(User, on_delete=models.CASCADE) #change to user possibly
+    user = models.ForeignKey(User, on_delete=models.CASCADE) #change to user possibly
     location = models.CharField(max_length=255, blank=True)
     bio = models.CharField(max_length=255)
     img = models.CharField(max_length=9999)

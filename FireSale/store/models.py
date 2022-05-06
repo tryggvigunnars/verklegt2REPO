@@ -4,11 +4,18 @@ from account.models import *
 
 
 # Create your models here.
-#status tafla
-class Bids(models.Model): # skoða
+class Status(models.Model):
+    status = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.status
+
+
+class Bids(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    amount = models.FloatField()# bæta við foreign key á status
+    amount = models.FloatField()
+    status = models.ForeignKey(Status, on_delete=models.CASCADE, default=1)
 
 
 class Orders(models.Model):

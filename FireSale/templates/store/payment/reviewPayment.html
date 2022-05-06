@@ -17,28 +17,28 @@
             </div>
             <form action="">
                 <div class="mb-3">
-                    <p class="dis fw-bold mb-2">Name:</p>
-                    <input class="form-control" type="name">
+                    <label for="name" class="dis fw-bold mb-2" >Name: </label>
+                    <p id="name" class="form-control" type="name">{{ info.pay.name }}</p>
                 </div>
 
                 <div class="mb-3">
-                    <p class="dis fw-bold mb-2">Address:</p>
-                    <input class="form-control" type="address">
+                    <label for="address" class="dis fw-bold mb-2" >Address: </label>
+                    <p id="address" class="form-control" type="address">{{ info.pay.address }}</p>
                 </div>
 
                 <div class="mb-3">
-                    <p class="dis fw-bold mb-2">City:</p>
-                    <input class="form-control" type="city">
+                    <label for="city" class="dis fw-bold mb-2" >City: </label>
+                    <p id="city" class="form-control" type="city">{{ info.pay.name }}</p>
                 </div>
 
                 <div class="mb-3">
-                    <p class="dis fw-bold mb-2">Country:</p>
-                    <input class="form-control" type="country">
+                    <label for="country" class="dis fw-bold mb-2" >Country: </label>
+                    <p id="country" class="form-control" type="country">{{ info.pay.country }}</p>
                 </div>
 
                 <div class="mb-3">
-                    <p class="dis fw-bold mb-2">Postal code:</p>
-                    <input class="form-control" type="postalCode">
+                    <label for="country" class="dis fw-bold mb-2" >Postal code: </label>
+                    <p id="postalCode" class="form-control" type="postalCode">{{ info.pay.postalCode }}</p>
                 </div>
             </form>
         </div>
@@ -49,34 +49,34 @@
                 <p class="fw-bold">Payment Details</p>
                 <p class="dis mb-3">Complete your purchase by providing your payment details</p>
             </div>
-            <form action="">
-                <div>
-                    <p class="dis fw-bold mb-2">Card details</p>
-                    <div class="d-flex align-items-center justify-content-between card-atm border rounded">
-                        <div class="fab fa-cc-visa ps-3"></div>
-                        <input type="text" class="form-control" placeholder="Card Details">
-                        <div class="d-flex w-50">
-                            <input type="text" class="form-control px-0" placeholder="MM/YY">
-                            <input type="password" maxlength=3 class="form-control px-0" placeholder="CVV">
-                        </div>
-                    </div>
-                    <div class="my-3 cardname">
-                        <p class="dis fw-bold mb-2">Cardholder name</p>
-                        <input class="form-control" type="text">
-                    </div>
+            <div class="cardDetails">
+                <p class="dis fw-bold mb-2">Card details</p>
+                <div class="d-flex align-items-center justify-content-between card-atm border rounded">
+                    <div class="fab fa-cc-visa ps-3"></div>
 
-                        <div class="d-flex flex-column dis">
-                            <div class="d-flex align-items-center justify-content-between mb-2">
-                                <p class="fw-bold">Total</p>
-                                <p class="fw-bold"><span class="fas fa-dollar-sign"></span>35.80</p>
-                            </div>
-                            <div class="btn btn-primary mt-2">Confirm and pay<span class="fas fa-dollar-sign px-1"></span>
-                            </div>
-                            <div class="btn btn-primary mt-2">Back<span class="fas fa-dollar-sign px-1"></span>
-                            </div>
-                        </div>
+                    <p id="cardDetails" type="text" class="form-control" placeholder="Card Details"> {{ info.pay.cardDetails }}</p>
+
+                    <div class="d-flex w-50">
+                        <p type="text" class="form-control px-0" placeholder="MM/YY">{{ info.pay.MMYY }}</p>
+                        <p type="password" maxlength=3 class="form-control px-0" placeholder="CVV">{{ info.pay.CVV }}</p>
+                    </div>
                 </div>
-            </form>
+                <div class="my-3 cardname">
+                    <label for="cardName" class="dis fw-bold mb-2">Cardholder name</label>
+                    <p id="cardName" class="form-control" type="text">{{ info.pay.cardholderName }}</p>
+                </div>
+
+                    <div class="d-flex flex-column dis">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <label for="totalPrice" class="fw-bold">Total</label>
+                            <p id="totalPrice" class="fw-bold"><span class="fas fa-dollar-sign"></span>{{ info.pay.price }}</p>
+                        </div>
+                        <div class="btn btn-primary mt-2">Confirm and pay<span class="fas fa-dollar-sign px-1"></span>
+                        </div>
+                        <a class="btn btn-primary mt-2" href="{% url 'payment' %}">Back
+                        </a>
+                    </div>
+            </div>
         </div>
     </div>
 </div>

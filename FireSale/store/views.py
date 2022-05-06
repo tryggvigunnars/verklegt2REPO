@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from account.models import *
 from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
+from store.forms.item_form import ItemCreateForm
+
 """
 items = [
     {'img': '', 'productName': 'Bike', 'seller': 'Kalli', 'location': 'Reykjavík', 'price': 3000},
@@ -44,4 +46,19 @@ def reviewPayment(request):
 
 def rateSeller(request):
     return render(request, 'store/payment/sellerRating.html')
+
+
+def createItem(request):
+    if request.method == 'POST':
+        form = ItemCreateForm(data=request.POST)
+        if form.is_valid():
+            item = form.save()
+            item_image = ItemImage(img=request.POST['image'], item=item)
+            item_image.save()
+            return redirect('browseItems')
+    else:
+        form = ItemCreateForm()
+        return render(request, 'Store/product/sell2.html', {
+            'form': form
+        })
 
