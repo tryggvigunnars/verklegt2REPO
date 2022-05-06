@@ -13,27 +13,27 @@
             </div>
             <div class="itemDetails">
                 <label for="productName">Product name: </label>
-                <p id="productName">{{ detail.item_name }}</p>
+                <p id="productName">{{ item.item_name }}</p>
                 <label for="seller">Seller:  </label>
-                <p id="seller">{{ detail.user }}</p>
+                <p id="seller">{{ item.user }}</p>
                 <label for="condition">Condition:   </label>
-                <p id="condition">{{ detail.condition }}</p>
+                <p id="condition">{{ item.condition }}</p>
                 <label for="highestOffer">Highest offer:   </label>
                 <p id="highestOffer"></p>
                 <label for="location">Location:   </label>
-                <p id="location">{{ detail.location }}</p>
+                <p id="location">{{ item.location }}</p>
                 <label for="sellersPrice">Sellers price:   </label>
-                <p id="sellersPrice">{{ detail.price }}</p>
+                <p id="sellersPrice">{{ item.price }}</p>
             </div>
             <div class="productDescription">
                 <label for="description">Product description</label>
-                <div class="txtBox">{{ detail.description }}</div>
+                <div class="txtBox">{{ item.description }}</div>
             </div>
         </div>
         <h1>Related searches: </h1>
         <div class="relatedSearches">
             {% for info in items %}
-            {% include 'store/product/browsingItem.html' with info=info%}
+            {% include 'store/product/browsingItem.html' with info=info %}
             {% endfor %}
         </div>
     </body>

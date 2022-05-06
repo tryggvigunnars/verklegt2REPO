@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
 # Create your models here.
 class UserInfo(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -11,11 +10,10 @@ class UserInfo(models.Model):
     dob = models.DateField()
 
     def __str__(self):
-        return str(self.phone_number)
-
+        return str(self.user)
 
 class Profile(models.Model):
-    name = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.ForeignKey(User, on_delete=models.CASCADE) #change to user possibly
     location = models.CharField(max_length=255, blank=True)
     bio = models.CharField(max_length=255)
     img = models.CharField(max_length=9999)
@@ -29,6 +27,9 @@ class Item(models.Model):
     description = models.CharField(max_length=255, blank=True)
     location = models.CharField(max_length=255, blank=True)
 
+    def __str__(self):
+        return str(self.item_name)
+
 
 class ItemImage(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
@@ -38,3 +39,6 @@ class ItemImage(models.Model):
 class Rating(models.Model):
     User = models.ForeignKey(User, on_delete=models.CASCADE)
     rating = models.IntegerField()
+
+
+

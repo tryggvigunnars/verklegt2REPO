@@ -1,19 +1,18 @@
-{% extends extension %}
 {% load static %}
-{% block items %}
 <link rel="stylesheet" href="{% static 'css/ItemStyle.css' %}"/>
-{% for info in item_info %}
     <div class="item">
-        <div class="itemPicture"> <img src="{{ info.img }}" alt="itemPic"></div>
+        <div class="itemPicture"> <img src="{{ bid.img }}" alt="itemPic"></div>
         <div class="itemInfo">
-            <h3 class="productName">Product: {{ info.productName }}</h3>
-            <h6 class="sellerName">Seller name: {{ info.seller }}</h6>
-            <h6 class="sellerLocation">Location: {{ info.location }}</h6>
+            <label for="productName">Product:</label>
+            <p id="productName">{{ bid.productName }}</p>
+            <label for="sellerName">Seller name:</label>
+            <p id="sellerName">{{ bid.seller }}</p>
+            <label class="sellerLocation">Location:</label>
+            <p id="sellerLocation">{{ bid.location }}</p>
         </div>
         <div class="itemInfo2">
-            <h1 class="listingPrice">{{ info.price }} kr.</h1>
+            <label for="bidAmount">My bid:</label>
+            <p id="bidAmount">{{ bid.amount }}$</p>
             <button>View product details</button>
         </div>
     </div>
-{% endfor %}
-{% endblock %}
