@@ -1,33 +1,39 @@
 {% extends 'headers/base_header.html' %}
+{% load static %}
 {% block content %}
+
+
+<link rel="stylesheet" href="{% static 'css/itemDetailsStyle.css' %}"/>
     <body>
         <div class="fullItemView">
-            <div class="itempicture"> <img src="" alt=""></div>
-            <div class="offerDetails">
-                <h3 class="highestOffer">Current Highest offer: </h3>
-                <form action="/action_page.php">
-                    <label for="bid">Enter offer: </label>
-                    <input type="text" id="price"><br><br>
-                    <input type="submit" value="Send my offer">
-                </form>
-            </div>
-            <div class="itemDetails">
-                <label for="productName">Product name: </label>
-                <p id="productName">{{ item.item_name }}</p>
-                <label for="seller">Seller:  </label>
-                <p id="seller">{{ item.user }}</p>
-                <label for="condition">Condition:   </label>
-                <p id="condition">{{ item.condition }}</p>
-                <label for="highestOffer">Highest offer:   </label>
-                <p id="highestOffer"></p>
-                <label for="location">Location:   </label>
-                <p id="location">{{ item.location }}</p>
-                <label for="sellersPrice">Sellers price:   </label>
-                <p id="sellersPrice">{{ item.price }}</p>
-            </div>
-            <div class="productDescription">
-                <label for="description">Product description</label>
-                <div class="txtBox">{{ item.description }}</div>
+            <div class="item">
+                <div class="itempicture"> <img src="" alt=""></div>
+                <div class="offerDetails">
+                    <h3 class="highestOffer">Current Highest offer: </h3>
+                    <form action="/action_page.php">
+                        <label class="label" for="bid">Enter offer: </label>
+                        <input type="text" id="price"><br><br>
+                        <input type="submit" value="Send my offer">
+                    </form>
+                </div>
+                <div class="itemDetails">
+                    <label class="label" for="productName">Product name: </label>
+                    <p id="productName">{{ item.item_name }}</p>
+                    <label class="label" for="seller">Seller:  </label>
+                    <p id="seller">{{ item.user }}</p>
+                    <label class="label" for="condition">Condition:   </label>
+                    <p id="condition">{{ item.condition }}</p>
+                    <label class="label" for="highestOffer">Highest offer:   </label>
+                    <p id="highestOffer"></p>
+                    <label class="label" for="location">Location:   </label>
+                    <p id="location">{{ item.location }}</p>
+                    <label class="label" for="sellersPrice">Sellers price:   </label>
+                    <p id="sellersPrice">{{ item.price }}</p>
+                </div>
+                <div class="productDescription">
+                    <label class="label" for="description">Product description</label>
+                    <div class="txtBox">{{ item.description }}</div>
+                </div>
             </div>
         </div>
         <h1>Related searches: </h1>
