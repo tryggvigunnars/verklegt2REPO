@@ -1,24 +1,22 @@
 from django.shortcuts import render, redirect
 from account.models import *
 from django.shortcuts import get_object_or_404
-
+from store.forms.item_form import ItemCreateForm
+from django.http import JsonResponse
 
 # Create your views here.
-from store.forms.item_form import ItemCreateForm
-
-"""
-items = [
-    {'img': '', 'productName': 'Bike', 'seller': 'Kalli', 'location': 'Reykjavík', 'price': 3000},
-    {'img': '', 'productName': 'Car', 'seller': 'Páll', 'location': 'Reykjavík', 'price': 5000},
-    {'img': '', 'productName': 'Scooter', 'seller': 'Nilli', 'location': 'Reykjavík', 'price': 80000}
-]
-
-item_details = [
-    {'img': '', 'productName': 'Bike', 'seller': 'Kalli', 'location': 'Reykjavík', 'price': 3000}
-]
-"""
 
 def browse(request):
+    if 'search_filter' in request.GET: #Það verður að bæta við seller og image
+        search_filter = request.GET['search_filter']
+        things = [ {
+            'id': x.id,
+            'item_name': x.item_name,
+            'location': x.location,
+            'price': x.price
+        } for x in Item.objects.filter(item_name__icontains=search_filter) ]
+        return JsonResponse({ 'data': things })
+        #items = list(Item.objects.filter(item_name__icontains=search_filter).values())
     items = {'items': Item.objects.all()}
     return render(request, 'store/product/browsing.html', items)
 
@@ -69,4 +67,3 @@ def createItem(request):
         return render(request, 'Store/product/sell2.html', {
             'form': form
         })
-
