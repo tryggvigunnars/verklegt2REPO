@@ -7,7 +7,9 @@
 <div class="paymentDiv">
 
 </div>
-
+{% for info in form %}
+{% include 'store/payment/pay.html' with info=info %}
+{% endfor %}
 <div class="container d-lg-flex">
     <div class="box-2">
         <div class="box-inner-2">
@@ -18,27 +20,27 @@
             <form action="">
                 <div class="mb-3">
                     <label for="name" class="dis fw-bold mb-2" >Name: </label>
-                    <p id="name" class="form-control" type="name">{{ info.pay.name }}</p>
+                    <p id="name" class="form-control" type="name">{{ info.name }}</p>
                 </div>
 
                 <div class="mb-3">
                     <label for="address" class="dis fw-bold mb-2" >Address: </label>
-                    <p id="address" class="form-control" type="address">{{ info.pay.address }}</p>
+                    <p id="address" class="form-control" type="address">{{ info.address }}</p>
                 </div>
 
                 <div class="mb-3">
                     <label for="city" class="dis fw-bold mb-2" >City: </label>
-                    <p id="city" class="form-control" type="city">{{ info.pay.name }}</p>
+                    <p id="city" class="form-control" type="city">{{ info.name }}</p>
                 </div>
 
                 <div class="mb-3">
                     <label for="country" class="dis fw-bold mb-2" >Country: </label>
-                    <p id="country" class="form-control" type="country">{{ info.pay.country }}</p>
+                    <p id="country" class="form-control" type="country">{{ info.country }}</p>
                 </div>
 
                 <div class="mb-3">
                     <label for="country" class="dis fw-bold mb-2" >Postal code: </label>
-                    <p id="postalCode" class="form-control" type="postalCode">{{ info.pay.postalCode }}</p>
+                    <p id="postalCode" class="form-control" type="postalCode">{{ info.postalCode }}</p>
                 </div>
             </form>
         </div>
@@ -54,11 +56,11 @@
                 <div class="d-flex align-items-center justify-content-between card-atm border rounded">
                     <div class="fab fa-cc-visa ps-3"></div>
 
-                    <p id="cardDetails" type="text" class="form-control" placeholder="Card Details"> {{ info.pay.cardDetails }}</p>
+                    <p id="cardDetails" type="text" class="form-control" placeholder="Card Details"> {{ info.cardDetails }}</p>
 
                     <div class="d-flex w-50">
                         <p type="text" class="form-control px-0" placeholder="MM/YY">{{ info.pay.MMYY }}</p>
-                        <p type="password" maxlength=3 class="form-control px-0" placeholder="CVV">{{ info.pay.CVV }}</p>
+                        <p type="password" maxlength=3 class="form-control px-0" placeholder="CVV">{{ info.CVV }}</p>
                     </div>
                 </div>
                 <div class="my-3 cardname">
@@ -69,7 +71,7 @@
                     <div class="d-flex flex-column dis">
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <label for="totalPrice" class="fw-bold">Total</label>
-                            <p id="totalPrice" class="fw-bold"><span class="fas fa-dollar-sign"></span>{{ info.pay.price }}</p>
+                            <p id="totalPrice" class="fw-bold"><span class="fas fa-dollar-sign"></span>{{ info.price }}</p>
                         </div>
                         <div class="btn btn-primary mt-2">Confirm and pay<span class="fas fa-dollar-sign px-1"></span>
                         </div>
