@@ -12,5 +12,4 @@ urlpatterns = [
 
     path('myListings/', views.myListings, name="myListings"),
     path('myBids/', views.myBids, name="myBids"),
-
 ]
