@@ -1,0 +1,10 @@
+{% extends 'headers/login_header.html' %}
+
+{% block content %}
+<form class="form form-horizontal" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input class="btn btn-primary" type="submit" value="register" >
+</form>
+
+{% endblock %}
