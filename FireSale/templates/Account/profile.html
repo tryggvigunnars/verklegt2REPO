@@ -7,8 +7,8 @@
               <div class="row g-0">
                 <div id="imageContainer" class="col-md-4 gradient-custom text-center text-white" >
 
-                  <img src="/static/images/axel.jpg"
-                    alt="Avatar" class="img-fluid my-5" />
+                  <img src="{{ profile.img }}"
+                    alt="Avatar" class="img fluid img-thumbnail" />
 
                 </div>
                 <div class="col-md-8">
@@ -18,18 +18,18 @@
                     <div class="row pt-1">
                       <div id="userName" class="col-6 mb-3">
                         <h6>User Name</h6>
-                        <p class="text-muted">{{ info.user.email }}</p>
+                        <p class="text-muted">{{ profile.user }}</p>
                       </div>
                       <div id="location" class="col-6 mb-3">
                         <h6>Location</h6>
-                        <p class="text-muted">{{ info.user.location }}</p>
+                        <p class="text-muted">{{ profile.location }}</p>
                       </div>
                     </div>
 
                     <div class="row pt-1">
                       <div id="bio" class="col-6 mb-3">
                         <h6>Bio</h6>
-                        <p class="text-muted">{{ info.user.bio }}</p>
+                        <p class="text-muted">{{ profile.bio }}</p>
                       </div>
                     </div>
                     <div class="btn btn-primary mt-2">

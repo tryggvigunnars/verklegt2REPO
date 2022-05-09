@@ -52,7 +52,9 @@ def createItem(request):
     if request.method == 'POST':
         form = ItemCreateForm(data=request.POST)
         if form.is_valid():
-            item = form.save()
+            item = form.save(commit=False)
+            item.user = request.user
+            item.save()
             item_image = ItemImage(img=request.POST['image'], item=item)
             item_image.save()
             return redirect('browseItems')
