@@ -2,7 +2,7 @@
 from django.contrib. auth. forms import UserCreationForm
 from django. shortcuts import render, redirect
 from account.Forms.profileForm import ProfileForm
-from account.models import Profile
+from account.models import Profile, Item
 from django.http import HttpResponse
 # Create your views here.
 
@@ -43,7 +43,8 @@ def profile(request):
     return render(request, 'Account/profile.html', context)
 
 def myListings(request):
-    return render(request, 'account/myListings.html')
+    context = {'items': Item.objects.filter(user=request.user)}
+    return render(request, 'account/myListings.html', context)
 
 def myBids(request):
     return render(request, 'account/myBids.html')
