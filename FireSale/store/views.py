@@ -41,7 +41,13 @@ def pay(request):
 
 
 def reviewPayment(request):
-    return render(request, 'store/payment/reviewPayment.html')
+    if request.method == 'POST':
+        form = reviewPayment(data=request.POST)
+        if form.is_valid():
+            form.save()
+
+        context = {'form': form}
+        return render(request, 'store/payment/reviewPayment.html', context)
 
 
 def rateSeller(request):
