@@ -10,9 +10,10 @@ class ItemCreateForm(ModelForm):
         model = Item
         exclude = ['id']
         widgets = {
-            'name': widgets.TextInput(attrs={'class': 'form-control'}),
+            'user': widgets.Select(attrs={'class': 'form-control'}),
+            'item_name': widgets.TextInput(attrs={'class': 'form-control'}),
             'price': widgets.NumberInput(attrs={'class': 'form-control'}),
-            'condition': widgets.TextInput(attrs={'class': 'form-control'}),
+            'condition': widgets.Select(attrs={'class': 'form-control'}),
             'description': widgets.TextInput(attrs={'class': 'form-control'}),
             'location': widgets.TextInput(attrs={'class': 'form-control'})
         }
