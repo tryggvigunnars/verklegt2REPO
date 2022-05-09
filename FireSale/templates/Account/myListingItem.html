@@ -12,7 +12,9 @@
         </div>
         <div class="itemInfo2">
             <h1 class="listingPrice">{{ info.price }}$</h1>
-            <button><a href="/store/{{ info.id }}" style="color: black"> View product details</a></button>
+            <a href="/store/{{ info.id }}" >
+                <input type="button" id="viewItem" value="View item details">
+            </a>
         </div>
     </div>
 
