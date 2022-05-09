@@ -15,47 +15,15 @@
                 <p class="fw-bold">Contact info</p>
                 <p class="dis mb-3">Enter yor contact information here:</p>
             </div>
-            <form class="container" action="{% url 'register' %}" method="post">
+
+            <form class="form form-horizontal" method="POST">
                 {% csrf_token %}
-                <div class="mb-3">
-                    <p class="dis fw-bold mb-2">Username:</p>
-                    <input class="form-control" type="name">
-                </div>
-
-                <div class="mb-3">
-                    <p class="dis fw-bold mb-2">Email:</p>
-                    <input class="form-control" type="email">
-                </div>
-
-                <div class="mb-3">
-                    <p class="dis fw-bold mb-2">Password:</p>
-                    <input class="form-control" type="password">
-                </div>
-
-                <div class="mb-3">
-                    <p class="dis fw-bold mb-2">Phone number:</p>
-                    <input class="form-control" type="phonenumber">
-                </div>
-
-                <div class="mb-3">
-                    <p class="dis fw-bold mb-2">Address:</p>
-                    <input class="form-control" type="address">
-                </div>
-
-                <div class="mb-3">
-                    <p class="dis fw-bold mb-2">Postal code:</p>
-                    <input class="form-control" type="postalCode">
-                </div>
-
-                <div class="mb-3">
-                    <p class="dis fw-bold mb-2">Date of birth:</p>
-                    <input class="form-control" type="date">
-                </div>
-
-                <input class="btn btn-primary mt-2" type="submit" value="Register">
-
+                {{ form }}
+                <input class="btn btn-primary" type="submit" value="register" >
             </form>
+
         </div>
+        <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Back to log in</a>
     </div>
 </div>
 
