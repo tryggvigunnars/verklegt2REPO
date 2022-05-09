@@ -19,15 +19,22 @@ class Ratings(models.Model):
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE) #change to user possibly
     location = models.CharField(max_length=255, blank=True)
-    bio = models.CharField(max_length=255)
-    img = models.CharField(max_length=9999)
+    bio = models.CharField(max_length=255, blank=True)
+    img = models.CharField(max_length=9999, blank=True)
+
+
+class Condition(models.Model):
+    condition = models.CharField(max_length=255)
+
+    def __str__(self):
+        return str(self.condition)
 
 
 class Item(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     item_name = models.CharField(max_length=255)
     price = models.FloatField()
-    condition = models.CharField(max_length=255)
+    condition = models.ForeignKey(Condition, on_delete=models.CASCADE)
     description = models.CharField(max_length=255, blank=True)
     location = models.CharField(max_length=255, blank=True)
 
@@ -43,6 +50,8 @@ class ItemImage(models.Model):
 class Rating(models.Model):
     User = models.ForeignKey(User, on_delete=models.CASCADE)
     rating = models.IntegerField()
+
+
 
 
 

@@ -33,7 +33,7 @@ def itemDetails(request, id):
 
 
 def sellProduct(request):
-    return render(request, 'store/product/sell.html')
+    return render(request, 'store/product/sell2.html')
 
 
 def pay(request):
