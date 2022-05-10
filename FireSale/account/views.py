@@ -13,6 +13,7 @@ user_info = [
 def login(request):
     return render(request, 'Account/login.html')
 
+
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(data=request.POST)
@@ -42,9 +43,11 @@ def profile(request):
     context = {'profile': Profile.objects.filter(user=request.user).first()}
     return render(request, 'Account/profile.html', context)
 
+
 def myListings(request):
     context = {'items': Item.objects.filter(user=request.user)}
     return render(request, 'account/myListings.html', context)
+
 
 def myBids(request):
     return render(request, 'account/myBids.html')
