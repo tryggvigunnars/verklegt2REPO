@@ -15,8 +15,7 @@ $(document).ready(function() {
                                    <h6>${d.user}</h6>
                                    <h6>${d.location}</h6>
                                    <h1>${d.price}</h1>
-                                </a>
-                                
+                                </a>     
                             </div>`
                 });
 
