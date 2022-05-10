@@ -91,3 +91,4 @@ def sendOffer(request):
             bid.user = request.user
             bid.save()
             return redirect('browseItems')
+
