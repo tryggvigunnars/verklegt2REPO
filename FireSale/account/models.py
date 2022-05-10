@@ -56,3 +56,4 @@ class Rating(models.Model):
 
 
 
+

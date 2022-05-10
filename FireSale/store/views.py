@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404
 from store.forms.item_form import ItemCreateForm
 from store.forms.bidsForm import sendOfferForm
 from django.http import JsonResponse
+from django.db.models import Avg, Max, Min
 
 # Create your views here.
 from store.models import *
@@ -40,7 +41,9 @@ def itemDetails(request, id):
     form = sendOfferForm(initial={
         'item': item
     })
-    context = { 'item': item, 'items': Item.objects.all(), 'form': form}
+    bids = Bids.objects.filter(item_id=id)
+    highest_offer = bids.aggregate(Max('amount'))
+    context = { 'item': item, 'items': Item.objects.all(), 'form': form, 'highest_offer': highest_offer}
     return render(request, 'store/product/itemDetails.html', context)
 
 

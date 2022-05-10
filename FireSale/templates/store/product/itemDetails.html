@@ -12,6 +12,7 @@
 
                 <div class="offerDetails">
                     <h3 class="highestOffer">Current Highest offer: </h3>
+                    <p class="highAmount">{{ highest_offer.amount__max }}$</p>
                     <form class="container" action="{% url 'sendOffer' %}" method="POST">
                         {% csrf_token %}
                         {{ form }}

@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django. shortcuts import render, redirect
 from account.Forms.profileForm import ProfileForm
 from account.models import Profile, Item
+from store.models import Bids
 from django.http import HttpResponse
 # Create your views here.
 
@@ -50,7 +51,8 @@ def myListings(request):
 
 
 def myBids(request):
-    return render(request, 'account/myBids.html')
+    context = {'bids': Bids.objects.filter(user=request.user)}
+    return render(request, 'account/myBids.html', context)
 
 
 
