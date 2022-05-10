@@ -15,7 +15,10 @@
                 <p class="fw-bold">Contact info</p>
                 <p class="dis mb-3">Enter yor contact information here:</p>
             </div>
-            <form action="">
+            <form class="form form-horizontal" method="post">
+                {% csrf_token %}
+                {{ form }}
+
                 <div class="mb-3">
                     <p class="dis fw-bold mb-2">Name:</p>
                     <input class="form-control" type="name">
@@ -68,10 +71,9 @@
                         <div class="d-flex flex-column dis">
                             <div class="d-flex align-items-center justify-content-between mb-2">
                                 <p class="fw-bold">Total</p>
-                                <p class="fw-bold"><span class="fas fa-dollar-sign"></span>35.80</p>
+                                <p class="fw-bold"><span class="fas fa-dollar-sign"></span>35.80 </p>
                             </div>
-                            <a class="btn btn-primary mt-2" href="{% url 'reviewPayment' %}">Save and Review<span class="fas fa-dollar-sign px-1"></span>35.80
-                            </a>
+                            <a class="btn btn-primary mt-2" href="{% url 'reviewPayment' %}">Save and Review</a>
                         </div>
                 </div>
             </form>
