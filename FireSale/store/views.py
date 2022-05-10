@@ -9,14 +9,21 @@ from django.http import JsonResponse
 def browse(request):
     if 'search_filter' in request.GET: #Það verður að bæta við seller og image
         search_filter = request.GET['search_filter']
+        filtered_list = Item.objects.filter(item_name__icontains=search_filter)
         things = [ {
             'id': x.id,
             'item_name': x.item_name,
+            'image': x.itemimage_set.first().img if x.itemimage_set.first() is not None else '',
+            'user': x.user.username,
             'location': x.location,
             'price': x.price
-        } for x in Item.objects.filter(item_name__icontains=search_filter) ]
-        return JsonResponse({ 'data': things })
-        #items = list(Item.objects.filter(item_name__icontains=search_filter).values())
+        } for x in filtered_list]
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({ 'data': things })
+        else:
+            return render(request, 'store/product/browsing.html', {
+                'items': filtered_list
+            })
     items = {'items': Item.objects.all()}
     return render(request, 'store/product/browsing.html', items)
 
