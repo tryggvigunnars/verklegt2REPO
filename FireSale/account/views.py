@@ -1,9 +1,11 @@
-
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django. shortcuts import render, redirect
 from account.Forms.profileForm import ProfileForm
 from account.models import Profile, Item
+from store.models import Bids
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 # Create your views here.
 
 user_info = [
@@ -12,6 +14,7 @@ user_info = [
 
 def login(request):
     return render(request, 'Account/login.html')
+
 
 def register(request):
     if request.method == 'POST':
@@ -23,7 +26,7 @@ def register(request):
         'form': UserCreationForm()
     })
 
-
+@login_required
 def editprofile(request):
     profile = Profile.objects.filter(user=request.user).first()
     if request.method == 'POST':
@@ -37,17 +40,32 @@ def editprofile(request):
         'form': ProfileForm(instance=profile)
     })
 
-
+@login_required
 def profile(request):
     context = {'profile': Profile.objects.filter(user=request.user).first()}
     return render(request, 'Account/profile.html', context)
 
+<<<<<<< HEAD
+
+=======
+@login_required
+>>>>>>> a858f9ad961e892ebb81f0e3a4019e9fd47af17e
 def myListings(request):
     context = {'items': Item.objects.filter(user=request.user)}
     return render(request, 'account/myListings.html', context)
 
-def myBids(request):
-    return render(request, 'account/myBids.html')
+<<<<<<< HEAD
 
+=======
+@login_required
+>>>>>>> a858f9ad961e892ebb81f0e3a4019e9fd47af17e
+def myBids(request):
+    context = {'bids': Bids.objects.filter(user=request.user)}
+    return render(request, 'account/myBids.html', context)
+
+def deleteListing(request, id):
+    listing = get_object_or_404(Item, pk=id)
+    listing.delete()
+    return redirect('myListings')
 
 

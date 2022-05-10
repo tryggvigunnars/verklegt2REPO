@@ -3,25 +3,50 @@
     display: flex;
     flex-direction: row;
     background-color: whitesmoke;
-    margin: 15px;
+    margin-bottom: 15px;
+    margin-top: 15px;
     width: 70%;
     border: solid black;
+    padding: 5px;
 }
 
 
-#viewItem{
+.itemInfo2 a{
     align-self: flex-end;
-    color: black;
+    background-color: red;
     text-decoration: none;
-    margin: 10px;
+}
+
+.itemInfo2 input{
+    background-color: #ff7c42;
+}
+
+.itemInfo2 h1{
+
 }
 
 .itemPicture {
-    display: flex;
-    max-height: 100px;
+    width: 20%;
+    height: 100%;
 }
 
 .itemPicture img {
-    max-width: 100px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.itemInfo{
+    width: 40%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.itemInfo2{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 

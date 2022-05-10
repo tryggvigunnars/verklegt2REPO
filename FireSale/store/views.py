@@ -4,6 +4,8 @@ from django.shortcuts import get_object_or_404
 from store.forms.item_form import ItemCreateForm
 from store.forms.bidsForm import sendOfferForm
 from django.http import JsonResponse
+from django.db.models import Avg, Max, Min
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 from store.models import *
@@ -40,14 +42,16 @@ def itemDetails(request, id):
     form = sendOfferForm(initial={
         'item': item
     })
-    context = { 'item': item, 'items': Item.objects.all(), 'form': form}
+    bids = Bids.objects.filter(item_id=id)
+    highest_offer = bids.aggregate(Max('amount'))
+    context = { 'item': item, 'items': Item.objects.all(), 'form': form, 'highest_offer': highest_offer}
     return render(request, 'store/product/itemDetails.html', context)
 
-
+@login_required
 def sellProduct(request):
     return render(request, 'store/product/sell2.html')
 
-
+@login_required
 def pay(request):
     return render(request, 'store/payment/pay.html')
 
@@ -69,11 +73,11 @@ def insertPaymentInfo(request, id):
 def reviewPayment(request):
     return render(request, "store/payment/reviewPayment.html")
 
-
+@login_required
 def rateSeller(request):
     return render(request, 'store/payment/sellerRating.html')
 
-
+@login_required
 def createItem(request):
     if request.method == 'POST':
         form = ItemCreateForm(data=request.POST)
@@ -89,7 +93,7 @@ def createItem(request):
         return render(request, 'Store/product/sell2.html', {
             'form': form
         })
-
+@login_required
 def sendOffer(request):
     if request.method == 'POST':
         form = sendOfferForm(data=request.POST)
@@ -98,3 +102,4 @@ def sendOffer(request):
             bid.user = request.user
             bid.save()
             return redirect('browseItems')
+

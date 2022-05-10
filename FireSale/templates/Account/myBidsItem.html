@@ -1,18 +1,28 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/ItemStyle.css' %}"/>
     <div class="item">
-        <div class="itemPicture"> <img src="{{ bid.img }}" alt="itemPic"></div>
+        <div class="itemPicture"> <img src="{{ bid.item.itemimage_set.first.img }}" alt="itemPic"></div>
         <div class="itemInfo">
             <label for="productName">Product:</label>
-            <p id="productName">{{ bid.productName }}</p>
+            <p id="productName">{{ bid.item.item_name }}</p>
             <label for="sellerName">Seller name:</label>
-            <p id="sellerName">{{ bid.seller }}</p>
+            <p id="sellerName">{{ bid.item.user }}</p>
             <label class="sellerLocation">Location:</label>
-            <p id="sellerLocation">{{ bid.location }}</p>
+            <p id="sellerLocation">{{ bid.item.location }}</p>
         </div>
         <div class="itemInfo2">
             <label for="bidAmount">My bid:</label>
             <p id="bidAmount">{{ bid.amount }}$</p>
-            <button>View product details</button>
+            <a href="/store/{{ bid.item.id }}" >
+                <input type="button" id="viewItem" value="View item details">
+            </a>
+        </div>
+        <div class="status">
+            <p id="statusName">{{ bid.status }}</p>
+            {% if bid.status.id == 3 %}
+                <a href="#" >
+                    <input type="button" id="payment" value="Go to payment">
+                </a>
+            {% endif %}
         </div>
     </div>

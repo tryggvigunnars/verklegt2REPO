@@ -5,3 +5,5 @@ from .models import *
 admin.site.register(Orders)
 admin.site.register(Status)
 admin.site.register(Payment)
+admin.site.register(Bids)
+
