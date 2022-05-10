@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404
 from store.forms.item_form import ItemCreateForm
 from store.forms.bidsForm import sendOfferForm
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 from store.models import *
@@ -43,15 +44,15 @@ def itemDetails(request, id):
     context = { 'item': item, 'items': Item.objects.all(), 'form': form}
     return render(request, 'store/product/itemDetails.html', context)
 
-
+@login_required
 def sellProduct(request):
     return render(request, 'store/product/sell2.html')
 
-
+@login_required
 def pay(request):
     return render(request, 'store/payment/pay.html')
 
-
+@login_required
 def reviewPayment(request):
     if request.method == 'POST':
         form = reviewPayment(data=request.POST)
@@ -61,11 +62,11 @@ def reviewPayment(request):
         context = {'form': form}
         return render(request, 'store/payment/reviewPayment.html', context)
 
-
+@login_required
 def rateSeller(request):
     return render(request, 'store/payment/sellerRating.html')
 
-
+@login_required
 def createItem(request):
     if request.method == 'POST':
         form = ItemCreateForm(data=request.POST)
@@ -81,7 +82,7 @@ def createItem(request):
         return render(request, 'Store/product/sell2.html', {
             'form': form
         })
-
+@login_required
 def sendOffer(request):
     if request.method == 'POST':
         form = sendOfferForm(data=request.POST)

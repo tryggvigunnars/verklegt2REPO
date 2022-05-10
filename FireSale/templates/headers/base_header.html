@@ -20,6 +20,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  {% if user.is_authenticated %}
                   <li class="nav-item">
                       <a class="nav-link active" aria-current="page" href="{% url 'browseItems' %}">Browse products</a>
                   </li>
@@ -37,11 +38,14 @@
                     Menu
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="{% url 'profile' %}">My profile</a></li>
-                    <li><a class="dropdown-item" href="{% url 'myListings' %}">My listings</a></li>
-                    <li><a class="dropdown-item" href="#">My bids</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="{% url 'login' %}">Log-Out</a></li>
+                        <li><a class="dropdown-item" href="{% url 'profile' %}">My profile</a></li>
+                        <li><a class="dropdown-item" href="{% url 'myListings' %}">My listings</a></li>
+                        <li><a class="dropdown-item" href="#">My bids</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'login' %}">Log-Out</a></li>
+                    {% else %}
+                        <li><a class="dropdown-item" href="{% url 'login' %}">Log-in</a></li>
+                    {% endif %}
                   </ul>
                 </li>
               </ul>
