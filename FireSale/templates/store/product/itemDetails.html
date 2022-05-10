@@ -7,15 +7,18 @@
     <body>
         <div class="fullItemView">
             <div class="item">
-                <div class="itempicture">
-                    <img class="pic" src="{{  item.itemimage_set.first.img  }}" alt=""></div>
+
+                <img class="itemPicture" src="{{  item.itemimage_set.first.img  }}" alt="">
+
                 <div class="offerDetails">
                     <h3 class="highestOffer">Current Highest offer: </h3>
-                    <form action="/action_page.php">
-                        <label class="label" for="bid">Enter offer: </label>
-                        <input type="text" id="price"><br><br>
-                        <input type="submit" value="Send my offer">
+
+                    <form class="container" action="{% url 'sendOffer' %}" method="POST">
+                        {% csrf_token %}
+                        {{ form }}
+                        <input class="btn btn-primary" type="submit" value="Send Offer" >
                     </form>
+
                 </div>
                 <div class="itemDetails">
                     <label class="label" for="productName">Product name: </label>

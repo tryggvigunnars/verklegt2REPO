@@ -2,9 +2,12 @@ from django.shortcuts import render, redirect
 from account.models import *
 from django.shortcuts import get_object_or_404
 from store.forms.item_form import ItemCreateForm
+from store.forms.bidsForm import sendOfferForm
 from django.http import JsonResponse
 
 # Create your views here.
+from store.models import *
+
 
 def browse(request):
     if 'search_filter' in request.GET: #Það verður að bæta við seller og image
@@ -26,7 +29,11 @@ def item(request):
 
 
 def itemDetails(request, id):
-    context = { 'item': get_object_or_404(Item, pk=id), 'items': Item.objects.all()}
+    item = get_object_or_404(Item, pk=id)
+    form = sendOfferForm(initial={
+        'item': item
+    })
+    context = { 'item': item, 'items': Item.objects.all(), 'form': form}
     return render(request, 'store/product/itemDetails.html', context)
 
 
@@ -67,3 +74,12 @@ def createItem(request):
         return render(request, 'Store/product/sell2.html', {
             'form': form
         })
+
+def sendOffer(request):
+    if request.method == 'POST':
+        form = sendOfferForm(data=request.POST)
+        if form.is_valid():
+            bid = form.save(commit=False)
+            bid.user = request.user
+            bid.save()
+            return redirect('browseItems')

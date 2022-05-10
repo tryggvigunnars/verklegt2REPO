@@ -1,7 +1,9 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/ItemStyle.css' %}"/>
     <div class="item">
-        <div class="itemPicture"> <img src="{{ info.itemimage_set.first.img }}" alt="itemPic"></div>
+        <div class="itemPicture">
+            <img src="{{ info.itemimage_set.first.img }}" alt="itemPic">
+        </div>
         <div class="itemInfo">
             <label class="productName" for="productName">Product:</label>
             <p id="productName">{{ info.item_name }}</p>
