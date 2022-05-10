@@ -10,6 +10,7 @@ urlpatterns = [
     path('payment/rateSeller/', views.rateSeller, name="rateSeller"),
     path('create_item', views.createItem, name='create_item'),
     path('sendOffer', views.sendOffer, name='sendOffer'),
+    path('insertPaymentInfo/<int:id>', views.insertPaymentInfo, name='insertPaymentInfo'),
 
 
 

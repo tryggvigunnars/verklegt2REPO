@@ -15,7 +15,7 @@
                 <p class="fw-bold">Contact info</p>
                 <p class="dis mb-3">Enter yor contact information here:</p>
             </div>
-            <form class="form form-horizontal" method="post">
+            <form class="form form-horizontal" action="{% url 'insertPaymentInfo' %} method="POST" >
                 {% csrf_token %}
                 {{ form }}
 

@@ -52,14 +52,22 @@ def pay(request):
     return render(request, 'store/payment/pay.html')
 
 
-def reviewPayment(request):
+def insertPaymentInfo(request, id):
+    bid = get_object_or_404(pk=id)
+    amount = bid.amount
     if request.method == 'POST':
-        form = reviewPayment(data=request.POST)
+        form = insertPaymentInfo(data=request.POST, initial={
+        'amount': amount
+    })
         if form.is_valid():
-            form.save()
+            pay = form.save(commit=False)
+            pay.user = request.user
+            pay.save()
+        return render(request, 'store/payment/reviewPayment.html', {'form': PaymentForm(instance=form), 'bid_amount': bid_amount})
 
-        context = {'form': form}
-        return render(request, 'store/payment/reviewPayment.html', context)
+
+def reviewPayment(request):
+    return render(request, "store/payment/reviewPayment.html")
 
 
 def rateSeller(request):
