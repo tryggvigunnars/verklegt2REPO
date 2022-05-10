@@ -20,7 +20,7 @@
         <div class="status">
             <p id="statusName">{{ bid.status }}</p>
             {% if bid.status.id == 3 %}
-                <a href="#" >
+                <a href="{% url 'insertPaymentInfo'%}" >
                     <input type="button" id="payment" value="Go to payment">
                 </a>
             {% endif %}
