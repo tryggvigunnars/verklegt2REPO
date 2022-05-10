@@ -4,6 +4,7 @@ from django. shortcuts import render, redirect
 from account.Forms.profileForm import ProfileForm
 from account.models import Profile, Item
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 # Create your views here.
 
 user_info = [
@@ -49,5 +50,9 @@ def myListings(request):
 def myBids(request):
     return render(request, 'account/myBids.html')
 
+def deleteListing(request, id):
+    listing = get_object_or_404(Item, pk=id)
+    listing.delete()
+    return redirect('myListings')
 
 
