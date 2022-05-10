@@ -9,6 +9,8 @@ urlpatterns = [
     path('payment/review/', views.reviewPayment, name="reviewPayment"),
     path('payment/rateSeller/', views.rateSeller, name="rateSeller"),
     path('create_item', views.createItem, name='create_item'),
+    path('sendOffer', views.sendOffer, name='sendOffer'),
+
 
 
 ]

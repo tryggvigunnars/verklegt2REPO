@@ -16,3 +16,5 @@ class ItemCreateForm(ModelForm):
             'description': widgets.TextInput(attrs={'class': 'form-control'}),
             'location': widgets.TextInput(attrs={'class': 'form-control'})
         }
+
+

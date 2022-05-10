@@ -6,12 +6,8 @@
     margin: 15px;
     width: 70%;
     border: solid black;
-    justify-content: space-around;
 }
 
-.itemInfo2{
-    display: flex;
-}
 
 #viewItem{
     align-self: flex-end;
@@ -21,8 +17,11 @@
 }
 
 .itemPicture {
+    display: flex;
     max-height: 100px;
-    max-width: 200px;
 }
 
+.itemPicture img {
+    max-width: 100px;
+}
 

@@ -2,21 +2,31 @@ from django.shortcuts import render, redirect
 from account.models import *
 from django.shortcuts import get_object_or_404
 from store.forms.item_form import ItemCreateForm
+from store.forms.bidsForm import sendOfferForm
 from django.http import JsonResponse
 
 # Create your views here.
+from store.models import *
+
 
 def browse(request):
     if 'search_filter' in request.GET: #Það verður að bæta við seller og image
         search_filter = request.GET['search_filter']
+        filtered_list = Item.objects.filter(item_name__icontains=search_filter)
         things = [ {
             'id': x.id,
             'item_name': x.item_name,
+            'image': x.itemimage_set.first().img if x.itemimage_set.first() is not None else '',
+            'user': x.user.username,
             'location': x.location,
             'price': x.price
-        } for x in Item.objects.filter(item_name__icontains=search_filter) ]
-        return JsonResponse({ 'data': things })
-        #items = list(Item.objects.filter(item_name__icontains=search_filter).values())
+        } for x in filtered_list]
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({ 'data': things })
+        else:
+            return render(request, 'store/product/browsing.html', {
+                'items': filtered_list
+            })
     items = {'items': Item.objects.all()}
     return render(request, 'store/product/browsing.html', items)
 
@@ -26,7 +36,11 @@ def item(request):
 
 
 def itemDetails(request, id):
-    context = { 'item': get_object_or_404(Item, pk=id), 'items': Item.objects.all()}
+    item = get_object_or_404(Item, pk=id)
+    form = sendOfferForm(initial={
+        'item': item
+    })
+    context = { 'item': item, 'items': Item.objects.all(), 'form': form}
     return render(request, 'store/product/itemDetails.html', context)
 
 
@@ -67,3 +81,12 @@ def createItem(request):
         return render(request, 'Store/product/sell2.html', {
             'form': form
         })
+
+def sendOffer(request):
+    if request.method == 'POST':
+        form = sendOfferForm(data=request.POST)
+        if form.is_valid():
+            bid = form.save(commit=False)
+            bid.user = request.user
+            bid.save()
+            return redirect('browseItems')
