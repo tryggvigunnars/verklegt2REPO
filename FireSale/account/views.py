@@ -45,20 +45,12 @@ def profile(request):
     context = {'profile': Profile.objects.filter(user=request.user).first()}
     return render(request, 'Account/profile.html', context)
 
-<<<<<<< HEAD
-
-=======
 @login_required
->>>>>>> a858f9ad961e892ebb81f0e3a4019e9fd47af17e
 def myListings(request):
     context = {'items': Item.objects.filter(user=request.user)}
     return render(request, 'account/myListings.html', context)
 
-<<<<<<< HEAD
-
-=======
 @login_required
->>>>>>> a858f9ad961e892ebb81f0e3a4019e9fd47af17e
 def myBids(request):
     context = {'bids': Bids.objects.filter(user=request.user)}
     return render(request, 'account/myBids.html', context)
