@@ -64,14 +64,15 @@ def insertPaymentInfo(request):
             pay = form.save(commit=False)
             pay.user = request.user
             pay.save()
-            return redirect('browseItems')
+            return redirect('reviewPayment', pay.id)
     else:
         form = PaymentForm()
         return render(request, 'store/payment/pay.html', {'form': form})
 
 
-def reviewPayment(request):
-    return render(request, "store/payment/reviewPayment.html")
+def reviewPayment(request, id):
+    payment = get_object_or_404(Payment, pk=id)
+    return render(request, "store/payment/reviewPayment.html", {'payment': payment})
 
 @login_required
 def rateSeller(request):
