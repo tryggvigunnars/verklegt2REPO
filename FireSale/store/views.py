@@ -64,6 +64,7 @@ def insertPaymentInfo(request):
             pay = form.save(commit=False)
             pay.user = request.user
             pay.save()
+            return redirect('browseItems')
     else:
         form = PaymentForm()
         return render(request, 'store/payment/pay.html', {'form': form})
@@ -79,7 +80,7 @@ def rateSeller(request):
 @login_required
 def createItem(request):
     if request.method == 'POST':
-        form = PaymentForm(data=request.POST)
+        form = ItemCreateForm(data=request.POST)
         if form.is_valid():
             item = form.save(commit=False)
             item.user = request.user
@@ -88,7 +89,7 @@ def createItem(request):
             item_image.save()
             return redirect('browseItems')
     else:
-        form = PaymentForm()
+        form = ItemCreateForm()
         return render(request, 'Store/product/sell2.html', {
             'form': form
         })
