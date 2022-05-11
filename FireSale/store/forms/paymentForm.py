@@ -1,5 +1,6 @@
 from django.forms import ModelForm, widgets
 from store.models import *
+from django import forms
 
 class PaymentForm(ModelForm):
     class Meta:
@@ -16,5 +17,4 @@ class PaymentForm(ModelForm):
             'cardYear': widgets.NumberInput(attrs={'class': 'form-control'}),
             'cardCvv': widgets.NumberInput(attrs={'class': 'form-control'}),
             'cardHolderName': widgets.TextInput(attrs={'class': 'form-control'}),
-            'amount': widgets.HiddenInput()
         }

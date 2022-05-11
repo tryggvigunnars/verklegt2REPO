@@ -7,9 +7,6 @@
 <div class="paymentDiv">
 
 </div>
-{% for info in form %}
-{% include 'store/payment/pay.html' with info=info %}
-{% endfor %}
 <div class="container d-lg-flex">
     <div class="box-2">
         <div class="box-inner-2">
@@ -19,28 +16,28 @@
             </div>
             <form action="">
                 <div class="mb-3">
-                    <label for="name" class="dis fw-bold mb-2" >Name: </label>
-                    <p id="name" class="form-control" type="name">{{ info.name }}</p>
+                    <label for="name" class="dis fw-bold mb-2" >User: </label>
+                    <p id="name" class="form-control" type="name">{{ payment.user }}</p>
                 </div>
 
                 <div class="mb-3">
                     <label for="address" class="dis fw-bold mb-2" >Address: </label>
-                    <p id="address" class="form-control" type="address">{{ info.address }}</p>
+                    <p id="address" class="form-control" type="address">{{ payment.address }}</p>
                 </div>
 
                 <div class="mb-3">
                     <label for="city" class="dis fw-bold mb-2" >City: </label>
-                    <p id="city" class="form-control" type="city">{{ info.name }}</p>
+                    <p id="city" class="form-control" type="city">{{ payment.city }}</p>
                 </div>
 
                 <div class="mb-3">
                     <label for="country" class="dis fw-bold mb-2" >Country: </label>
-                    <p id="country" class="form-control" type="country">{{ info.country }}</p>
+                    <p id="country" class="form-control" type="country">{{ payment.country }}</p>
                 </div>
 
                 <div class="mb-3">
                     <label for="country" class="dis fw-bold mb-2" >Postal code: </label>
-                    <p id="postalCode" class="form-control" type="postalCode">{{ info.postalCode }}</p>
+                    <p id="postalCode" class="form-control" type="postalCode">{{ payment.postalCode }}</p>
                 </div>
             </form>
         </div>
@@ -48,34 +45,34 @@
     <div class="box-2">
         <div class="box-inner-2">
             <div>
-                <p class="fw-bold">Payment Details</p>
-                <p class="dis mb-3">Complete your purchase by providing your payment details</p>
+                <p class="fw-bold">Review details and comfirm</p>
             </div>
             <div class="cardDetails">
                 <p class="dis fw-bold mb-2">Card details</p>
                 <div class="d-flex align-items-center justify-content-between card-atm border rounded">
                     <div class="fab fa-cc-visa ps-3"></div>
 
-                    <p id="cardDetails" type="text" class="form-control" placeholder="Card Details"> {{ info.cardDetails }}</p>
+                    <p id="cardDetails" type="text" class="form-control" placeholder="Card Details"> {{ payment.cardNumber }}</p>
 
                     <div class="d-flex w-50">
-                        <p type="text" class="form-control px-0" placeholder="MM/YY">{{ info.pay.MMYY }}</p>
-                        <p type="password" maxlength=3 class="form-control px-0" placeholder="CVV">{{ info.CVV }}</p>
+                        <p type="text" class="form-control px-0" placeholder="MM/YY">{{ payment.cardMonth }}/{{ payment.cardYear }}</p>
+                        <p type="password" maxlength=3 class="form-control px-0" placeholder="CVV">{{ payment.cardCvv }}</p>
                     </div>
                 </div>
                 <div class="my-3 cardname">
                     <label for="cardName" class="dis fw-bold mb-2">Cardholder name</label>
-                    <p id="cardName" class="form-control" type="text">{{ info.pay.cardholderName }}</p>
+                    <p id="cardName" class="form-control" type="text">{{ payment.cardholderName }}</p>
                 </div>
 
                     <div class="d-flex flex-column dis">
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <label for="totalPrice" class="fw-bold">Total</label>
-                            <p id="totalPrice" class="fw-bold"><span class="fas fa-dollar-sign"></span>{{ info.price }}</p>
+                            <p id="totalPrice" class="fw-bold"><span class="fas fa-dollar-sign"></span>{{ info.price }} very high price</p>
                         </div>
-                        <div class="btn btn-primary mt-2">Confirm and pay<span class="fas fa-dollar-sign px-1"></span>
-                        </div>
-                        <a class="btn btn-primary mt-2" href="{% url 'payment' %}">Back
+
+                        <input value="Confirm and pay" class="btn btn-primary mt-2" href="{% url 'rateSeller' %}" formaction="">
+
+                        <a class="btn btn-primary mt-2" href="{% url 'insertPaymentInfo' %}">Back
                         </a>
                     </div>
             </div>

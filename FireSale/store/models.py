@@ -24,17 +24,16 @@ class Orders(models.Model):
 
 class Payment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    address = models.CharField(max_length=20)
-    city = models.CharField(max_length=20)
-    location = models.CharField(max_length=20)
-    country = models.CharField(max_length=20)
+    address = models.CharField(max_length=250)
+    city = models.CharField(max_length=250)
+    location = models.CharField(max_length=250)
+    country = models.CharField(max_length=250)
     postalCode = models.IntegerField()
-    cardNumber = models.IntegerField(max_length=16)
+    cardNumber = models.IntegerField(max_length=17)
     cardMonth = models.IntegerField()
     cardYear =  models.IntegerField()
-    cardCvv = models.IntegerField(max_length=3)
-    cardholderName = models.CharField(max_length=30)
-    amount = models.ForeignKey(Bids, on_delete=models.CASCADE)
+    cardCvv = models.IntegerField(max_length=4)
+    cardholderName = models.CharField(max_length=250)
 
 
 
