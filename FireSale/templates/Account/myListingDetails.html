@@ -1,0 +1,49 @@
+{% extends 'headers/base_header.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/itemDetailsStyle.css' %}"/>
+
+{% block content %}
+    <body>
+        <div class="fullItemView">
+            <div class="item">
+
+                <img class="itemPicture" src="{{  item.itemimage_set.first.img  }}" alt="">
+
+                <div class="offerDetails">
+                    <h3 class="highestOffer">Current Highest offer: </h3>
+                    {% if highest_offer.amount__max is not None %}
+                        <p class="highAmount">{{ highest_offer.amount__max }}$</p>
+                    {% else %}
+                        <p class="highAmount">No offers received</p>
+                    {% endif %}
+
+
+                </div>
+                <div class="itemDetails">
+                    <label class="label" for="productName">Product name: </label>
+                    <p id="productName">{{ item.item_name }}</p>
+                    <label class="label" for="seller">Seller:  </label>
+                    <p id="seller">{{ item.user }}</p>
+                    <label class="label" for="condition">Condition:   </label>
+                    <p id="condition">{{ item.condition }}</p>
+                    <label class="label" for="highestOffer">Highest offer:   </label>
+                    <p id="highestOffer"></p>
+                    <label class="label" for="location">Location:   </label>
+                    <p id="location">{{ item.location }}</p>
+                    <label class="label" for="sellersPrice">Sellers price:   </label>
+                    <p id="sellersPrice">{{ item.price }}</p>
+                </div>
+                <div class="productDescription">
+                    <label class="label" for="description">Product description</label>
+                    <div class="txtBox">{{ item.description }}</div>
+                </div>
+            </div>
+        </div>
+        <h1>Offers received </h1>
+        <div class="offersReceived">
+            {% for bid in bids %}
+                    {% include 'Account/offersReceived.html' with bid=bid%}
+            {% endfor %}
+        </div>
+    </body>
+{% endblock %}
