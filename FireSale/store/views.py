@@ -104,3 +104,8 @@ def sendOffer(request):
             bid.save()
             return redirect('browseItems')
 
+
+def deleteListing(request, id):
+    listing = get_object_or_404(Item, pk=id)
+    listing.delete()
+    return redirect('rateSeller')
