@@ -110,7 +110,7 @@ def sendOffer(request):
 
 
 
-def deleteListing(request, id):
+def deletePaidListing(request, id):
     listing = get_object_or_404(Item, pk=id)
     listing.delete()
     return redirect('rateSeller')

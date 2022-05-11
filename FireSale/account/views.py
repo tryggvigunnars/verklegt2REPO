@@ -79,5 +79,6 @@ def getNotifications(request):
     user = request.user
     bids = Bids.objects.filter(user=user).exclude(status_id=1)
     items = Item.objects.filter(user=user)
-    context = {'bids': bids, 'items': items}
+    offers = Bids.objects.filter(item_id__in=items).order_by('item_id','-amount')
+    context = {'bids': bids, 'offers': offers}
     return render(request, 'Account/notification.html', context)
