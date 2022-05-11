@@ -10,7 +10,8 @@ urlpatterns = [
     path('payment/rateSeller/', views.rateSeller, name="rateSeller"),
     path('create_item', views.createItem, name='create_item'),
     path('sendOffer', views.sendOffer, name='sendOffer'),
-    path('insertPaymentInfo', views.insertPaymentInfo, name='insertPaymentInfo'),
+    path('insertPaymentInfo/<int:id>', views.insertPaymentInfo, name='insertPaymentInfo'),
     path('acceptOffer/<int:id>', views.acceptBid, name='acceptOffer'),
-    path('declineOffer/<int:id>', views.declineOffer, name='declineOffer')
+    path('declineOffer/<int:id>', views.declineOffer, name='declineOffer'),
+    path('deleteListing/<int:id>', views.deleteListing, name='deleteListing'),
 ]

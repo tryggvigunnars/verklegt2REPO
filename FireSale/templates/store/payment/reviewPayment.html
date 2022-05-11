@@ -70,9 +70,9 @@
                             <p id="totalPrice" class="fw-bold"><span class="fas fa-dollar-sign"></span>{{ info.price }} very high price</p>
                         </div>
 
-                        <input value="Confirm and pay" class="btn btn-primary mt-2" href="{% url 'rateSeller' %}" formaction="">
+                        <a class="btn btn-primary mt-2" href="{% url 'deleteListing' payment.item_id %}" >Confirm and pay</a>
 
-                        <a class="btn btn-primary mt-2" href="{% url 'insertPaymentInfo' %}">Back
+                        <a class="btn btn-primary mt-2" href="{% url 'insertPaymentInfo' payment.item_id%}">Back
                         </a>
                     </div>
             </div>

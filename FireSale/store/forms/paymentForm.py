@@ -5,7 +5,7 @@ from django import forms
 class PaymentForm(ModelForm):
     class Meta:
         model = Payment
-        exclude = ['id']
+        exclude = ['id', 'item']
         widgets = {
             'address': widgets.TextInput(attrs={'class': 'form-control'}),
             'city': widgets.TextInput(attrs={'class': 'form-control'}),
