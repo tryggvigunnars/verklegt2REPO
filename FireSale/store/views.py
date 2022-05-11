@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from account.models import *
 from django.shortcuts import get_object_or_404
-
+from account.models import Item
 from store.forms import bidsForm
 from store.forms.item_form import ItemCreateForm
 from store.forms.bidsForm import sendOfferForm
@@ -59,17 +59,19 @@ def pay(request):
     return render(request, 'store/payment/pay.html')
 
 
-def insertPaymentInfo(request):
+def insertPaymentInfo(request, id):
+    item = get_object_or_404(Item, pk=id)
     if request.method == 'POST':
         form = PaymentForm(data=request.POST)
         if form.is_valid():
             pay = form.save(commit=False)
             pay.user = request.user
+            pay.item = item
             pay.save()
             return redirect('reviewPayment', pay.id)
     else:
         form = PaymentForm()
-        return render(request, 'store/payment/pay.html', {'form': form})
+        return render(request, 'store/payment/pay.html', {'form': form, 'item': item})
 
 
 def reviewPayment(request, id):
