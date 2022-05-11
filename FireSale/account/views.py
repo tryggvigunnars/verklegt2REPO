@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.db.models import Max
 from django. shortcuts import render, redirect
 from account.Forms.profileForm import ProfileForm
 from account.models import Profile, Item
@@ -58,9 +59,18 @@ def myBids(request):
     return render(request, 'account/myBids.html', context)
 
 
+@login_required
 def deleteListing(request, id):
     listing = get_object_or_404(Item, pk=id)
     listing.delete()
     return redirect('myListings')
+
+
+def myListingDetails(request, id):
+    item = get_object_or_404(Item, pk=id)
+    bids = Bids.objects.filter(item_id=id).exclude(status_id=2).order_by('-amount')
+    highest_offer = bids.aggregate(Max('amount'))
+    context = { 'item': item, 'bids': bids, 'highest_offer': highest_offer}
+    return render(request, 'Account/myListingDetails.html', context)
 
 

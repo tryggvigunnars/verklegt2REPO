@@ -1,0 +1,18 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/ItemStyle.css' %}"/>
+    <div class="item">
+        <div class="bidUserInfo">
+            <label for="bidder">Bidder:</label>
+            <p id="bidder">{{ bid.user }}</p>
+        </div>
+        <div class="itemInfo">
+            <label for="bidAmount">Offer amount:</label>
+            <p id="bidAmount">{{ bid.amount }}$</p>
+            <a href="{% url 'acceptOffer' bid.id%}" >
+                <input type="button" id="viewItem" value="Accept offer">
+            </a>
+            <a href="{% url 'declineOffer' bid.id%}" >
+                <input type="button" id="viewItem" value="Decline Offer">
+            </a>
+        </div>
+    </div>

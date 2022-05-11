@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from account.models import *
 from django.shortcuts import get_object_or_404
+
+from store.forms import bidsForm
 from store.forms.item_form import ItemCreateForm
 from store.forms.bidsForm import sendOfferForm
 from store.forms.paymentForm import PaymentForm
@@ -102,3 +104,16 @@ def sendOffer(request):
             bid.save()
             return redirect('browseItems')
 
+
+def acceptBid(request, id, value):
+    bid = get_object_or_404(Bids, pk=id)
+    bid.status = get_object_or_404(Status, pk=3)
+    bid.save()
+    return redirect('myListingDetails', bid.item_id)
+
+
+def declineOffer(request, id):
+    bid = get_object_or_404(Bids, pk=id)
+    bid.status = get_object_or_404(Status, pk=2)
+    bid.save()
+    return redirect('myListingDetails', bid.item_id)
