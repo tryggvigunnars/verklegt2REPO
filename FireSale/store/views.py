@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from account.models import *
 from django.shortcuts import get_object_or_404
-
+from account.models import Item
 from store.forms import bidsForm
 from store.forms.item_form import ItemCreateForm
 from store.forms.bidsForm import sendOfferForm
@@ -30,7 +30,7 @@ def browse(request):
             return render(request, 'store/product/browsing.html', {
                 'items': filtered_list
             })
-    items = {'items': Item.objects.all().order_by('item_name')} #þurfum að aðlaga að filter
+    items = {'items': Item.objects.all().order_by('item_name')} #þurfum að breyta í html
     return render(request, 'store/product/browsing.html', items)
 
 
@@ -48,35 +48,41 @@ def itemDetails(request, id):
     context = { 'item': item, 'items': Item.objects.all(), 'form': form, 'highest_offer': highest_offer}
     return render(request, 'store/product/itemDetails.html', context)
 
+
 @login_required
 def sellProduct(request):
     return render(request, 'store/product/sell2.html')
+
 
 @login_required
 def pay(request):
     return render(request, 'store/payment/pay.html')
 
 
-def insertPaymentInfo(request):
+def insertPaymentInfo(request, id):
+    bid = get_object_or_404(Bids, pk=id)
     if request.method == 'POST':
         form = PaymentForm(data=request.POST)
         if form.is_valid():
             pay = form.save(commit=False)
             pay.user = request.user
+            pay.bid = bid
             pay.save()
             return redirect('reviewPayment', pay.id)
     else:
         form = PaymentForm()
-        return render(request, 'store/payment/pay.html', {'form': form})
+        return render(request, 'store/payment/pay.html', {'form': form, 'bid': bid})
 
 
 def reviewPayment(request, id):
     payment = get_object_or_404(Payment, pk=id)
     return render(request, "store/payment/reviewPayment.html", {'payment': payment})
 
+
 @login_required
 def rateSeller(request):
     return render(request, 'store/payment/sellerRating.html')
+
 
 @login_required
 def createItem(request):
@@ -94,6 +100,8 @@ def createItem(request):
         return render(request, 'Store/product/sell2.html', {
             'form': form
         })
+
+
 @login_required
 def sendOffer(request):
     if request.method == 'POST':
@@ -103,6 +111,12 @@ def sendOffer(request):
             bid.user = request.user
             bid.save()
             return redirect('browseItems')
+
+
+def deletePaidListing(request, id):
+    listing = get_object_or_404(Item, pk=id)
+    listing.delete()
+    return redirect('rateSeller')
 
 
 def acceptBid(request, id):
@@ -117,3 +131,4 @@ def declineOffer(request, id):
     bid.status = get_object_or_404(Status, pk=2)
     bid.save()
     return redirect('myListingDetails', bid.item_id)
+

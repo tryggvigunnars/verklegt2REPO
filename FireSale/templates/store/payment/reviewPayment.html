@@ -67,12 +67,12 @@
                     <div class="d-flex flex-column dis">
                         <div class="d-flex align-items-center justify-content-between mb-2">
                             <label for="totalPrice" class="fw-bold">Total</label>
-                            <p id="totalPrice" class="fw-bold"><span class="fas fa-dollar-sign"></span>{{ info.price }} very high price</p>
+                            <p id="totalPrice" class="fw-bold"><span class="fas fa-dollar-sign"></span>{{ payment.bid.amount }}$</p>
                         </div>
 
-                        <input value="Confirm and pay" class="btn btn-primary mt-2" href="{% url 'rateSeller' %}" formaction="">
+                        <a class="btn btn-primary mt-2" href="{% url 'deletePaidListing' payment.bid.item_id %}" >Confirm and pay</a>
 
-                        <a class="btn btn-primary mt-2" href="{% url 'insertPaymentInfo' %}">Back
+                        <a class="btn btn-primary mt-2" href="{% url 'insertPaymentInfo' payment.bid.id%}">Back
                         </a>
                     </div>
             </div>

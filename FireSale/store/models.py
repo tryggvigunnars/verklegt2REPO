@@ -17,23 +17,24 @@ class Bids(models.Model):
     amount = models.FloatField()
     status = models.ForeignKey(Status, on_delete=models.CASCADE, default=1)
 
+    def __str__(self):
+        return self.item
 
-class Orders(models.Model):
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Payment(models.Model):
+    bid = models.ForeignKey(Bids, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     address = models.CharField(max_length=250)
     city = models.CharField(max_length=250)
     location = models.CharField(max_length=250)
     country = models.CharField(max_length=250)
     postalCode = models.IntegerField()
-    cardNumber = models.IntegerField(max_length=17)
+    cardNumber = models.IntegerField()
     cardMonth = models.IntegerField()
     cardYear =  models.IntegerField()
-    cardCvv = models.IntegerField(max_length=4)
+    cardCvv = models.IntegerField()
     cardholderName = models.CharField(max_length=250)
+
 
 
 

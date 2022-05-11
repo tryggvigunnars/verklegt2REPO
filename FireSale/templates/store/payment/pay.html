@@ -15,9 +15,10 @@
                 <p class="fw-bold">Contact & payment info</p>
                 <p class="dis mb-3">Enter yor contact and payment information here:</p>
             </div>
-            <form class="form form-horizontal" action="{% url 'insertPaymentInfo' %}" method="POST">
+            <form class="form form-horizontal" action="{% url 'insertPaymentInfo' bid.id%}" method="POST">
                 {% csrf_token %}
                 {{ form }}
+                <h2 class="amount">Amount: {{ bid.amount }}$</h2>
                 <input type="submit" value="Post" class="btn btn-primary mt-2" style="clear:both; margin: 10px 0"/>
             </form>
         </div>

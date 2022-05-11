@@ -66,6 +66,7 @@ def deleteListing(request, id):
     return redirect('myListings')
 
 
+
 def myListingDetails(request, id):
     item = get_object_or_404(Item, pk=id)
     bids = Bids.objects.filter(item_id=id).exclude(status_id=2).order_by('-amount')
@@ -74,3 +75,10 @@ def myListingDetails(request, id):
     return render(request, 'Account/myListingDetails.html', context)
 
 
+def getNotifications(request):
+    user = request.user
+    bids = Bids.objects.filter(user=user).exclude(status_id=1)
+    items = Item.objects.filter(user=user)
+    offers = Bids.objects.filter(item_id__in=items).order_by('item_id','-amount')
+    context = {'bids': bids, 'offers': offers}
+    return render(request, 'Account/notification.html', context)

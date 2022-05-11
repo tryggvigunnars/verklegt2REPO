@@ -1,0 +1,14 @@
+.item {
+    width: 90%;
+    height: fit-content;
+}
+
+.item div{
+    margin: 5px;
+    border-right: black;
+    border-right-width: inherit;
+}
+
+.item label{
+    font-weight: bold;
+}
