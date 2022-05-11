@@ -60,18 +60,18 @@ def pay(request):
 
 
 def insertPaymentInfo(request, id):
-    item = get_object_or_404(Item, pk=id)
+    bid = get_object_or_404(Bids, pk=id)
     if request.method == 'POST':
         form = PaymentForm(data=request.POST)
         if form.is_valid():
             pay = form.save(commit=False)
             pay.user = request.user
-            pay.item = item
+            pay.bid = bid
             pay.save()
             return redirect('reviewPayment', pay.id)
     else:
         form = PaymentForm()
-        return render(request, 'store/payment/pay.html', {'form': form, 'item': item})
+        return render(request, 'store/payment/pay.html', {'form': form, 'bid': bid})
 
 
 def reviewPayment(request, id):
@@ -115,7 +115,7 @@ def deleteListing(request, id):
     listing.delete()
     return redirect('rateSeller')
 
-def acceptBid(request, id, value):
+def acceptBid(request, id):
     bid = get_object_or_404(Bids, pk=id)
     bid.status = get_object_or_404(Status, pk=3)
     bid.save()

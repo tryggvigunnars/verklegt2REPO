@@ -12,5 +12,6 @@ urlpatterns = [
     path('myListings/', views.myListings, name="myListings"),
     path('myListings/<int:id>', views.myListingDetails, name="myListingDetails"),
     path('myBids/', views.myBids, name="myBids"),
-    path('deleteListing/<int:id>', views.deleteListing, name="deleteListing")
+    path('deleteListing/<int:id>', views.deleteListing, name="deleteListing"),
+    path('notifications/', views.getNotifications, name="notifications")
 ]

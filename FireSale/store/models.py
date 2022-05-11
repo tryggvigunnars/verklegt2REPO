@@ -23,7 +23,7 @@ class Orders(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Payment(models.Model):
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    bid = models.ForeignKey(Bids, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     address = models.CharField(max_length=250)
     city = models.CharField(max_length=250)

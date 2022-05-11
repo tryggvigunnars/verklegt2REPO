@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account.apps.LoginConfig',
     'store.apps.StoreConfig',
-    'notifications.apps.NotificationsConfig',
 ]
 
 MIDDLEWARE = [

@@ -75,4 +75,9 @@ def myListingDetails(request, id):
     return render(request, 'Account/myListingDetails.html', context)
 
 
-
+def getNotifications(request):
+    user = request.user
+    bids = Bids.objects.filter(user=user).exclude(status_id=1)
+    items = Item.objects.filter(user=user)
+    context = {'bids': bids, 'items': items}
+    return render(request, 'Account/notification.html', context)

@@ -1,0 +1,17 @@
+{% extends 'headers/base_header.html' %}
+{% block content %}
+    <div class="container" style="display: flex; flex-direction: row" >
+        <div class="bid-container">
+        <h1>Current Bids</h1>
+            {% for bid in bids %}
+                {% include 'Account/myBidsItem.html' %}
+            {% endfor %}
+        </div>
+        <div class="listing-container">
+        <h1>My Listings</h1>
+            {% for bid in bids %}
+                {% include 'Account/notificationsOffersReceived.html' %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
