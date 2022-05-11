@@ -17,6 +17,9 @@ class Bids(models.Model):
     amount = models.FloatField()
     status = models.ForeignKey(Status, on_delete=models.CASCADE, default=1)
 
+    def __str__(self):
+        return self.item
+
 
 class Orders(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
@@ -34,6 +37,7 @@ class Payment(models.Model):
     cardYear =  models.IntegerField()
     cardCvv = models.IntegerField(max_length=4)
     cardholderName = models.CharField(max_length=250)
+
 
 
 
