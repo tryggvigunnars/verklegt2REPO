@@ -21,10 +21,6 @@ class Bids(models.Model):
         return self.item
 
 
-class Orders(models.Model):
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
 class Payment(models.Model):
     bid = models.ForeignKey(Bids, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)

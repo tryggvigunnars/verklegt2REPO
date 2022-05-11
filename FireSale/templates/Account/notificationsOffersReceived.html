@@ -9,12 +9,9 @@
             <label for="bidAmount">Offer amount:</label>
             <p id="bidAmount">{{ bid.amount }}$</p>
         </div>
-        <div>
-            <a href="{% url 'acceptOffer' bid.id%}" >
-                <input type="button" id="viewItem" value="Accept offer">
-            </a>
-            <a href="{% url 'declineOffer' bid.id%}" >
-                <input type="button" id="viewItem" value="Decline Offer">
-            </a>
+        <div class="product">
+            <label for="itemName">Listing:</label>
+            <p id="itemName">{{ bid.item.item_name }}</p>
         </div>
+
     </div>
