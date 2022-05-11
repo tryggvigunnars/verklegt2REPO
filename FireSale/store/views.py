@@ -9,13 +9,11 @@ from store.forms.paymentForm import PaymentForm
 from django.http import JsonResponse
 from django.db.models import Avg, Max, Min
 from django.contrib.auth.decorators import login_required
-
-# Create your views here.
 from store.models import *
-
+# Create your views here.
 
 def browse(request):
-    if 'search_filter' in request.GET: #Það verður að bæta við seller og image
+    if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
         filtered_list = Item.objects.filter(item_name__icontains=search_filter)
         things = [ {
@@ -32,7 +30,7 @@ def browse(request):
             return render(request, 'store/product/browsing.html', {
                 'items': filtered_list
             })
-    items = {'items': Item.objects.all()}
+    items = {'items': Item.objects.all().order_by('item_name')} #þurfum að aðlaga að filter
     return render(request, 'store/product/browsing.html', items)
 
 
@@ -107,7 +105,7 @@ def sendOffer(request):
             return redirect('browseItems')
 
 
-def acceptBid(request, id, value):
+def acceptBid(request, id):
     bid = get_object_or_404(Bids, pk=id)
     bid.status = get_object_or_404(Status, pk=3)
     bid.save()

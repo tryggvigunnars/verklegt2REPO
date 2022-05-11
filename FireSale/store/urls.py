@@ -12,5 +12,5 @@ urlpatterns = [
     path('sendOffer', views.sendOffer, name='sendOffer'),
     path('insertPaymentInfo', views.insertPaymentInfo, name='insertPaymentInfo'),
     path('acceptOffer/<int:id>', views.acceptBid, name='acceptOffer'),
-    path('declineOffer/<int:id>', views.declineOffer, name='declineOffer')
+    path('declineOffer/<int:id>', views.declineOffer, name='declineOffer'),
 ]
