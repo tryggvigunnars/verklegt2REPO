@@ -1,9 +1,9 @@
 from django.forms import ModelForm, widgets
-from account.models import *
+from store.models import *
 
 class PaymentForm(ModelForm):
     class Meta:
-        model = PaymentForm
+        model = Payment
         exclude = ['id']
         widgets = {
             'address': widgets.TextInput(attrs={'class': 'form-control'}),

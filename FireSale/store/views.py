@@ -3,6 +3,7 @@ from account.models import *
 from django.shortcuts import get_object_or_404
 from store.forms.item_form import ItemCreateForm
 from store.forms.bidsForm import sendOfferForm
+from store.forms.paymentForm import PaymentForm
 from django.http import JsonResponse
 from django.db.models import Avg, Max, Min
 from django.contrib.auth.decorators import login_required
@@ -56,18 +57,16 @@ def pay(request):
     return render(request, 'store/payment/pay.html')
 
 
-def insertPaymentInfo(request, id):
-    bid = get_object_or_404(pk=id)
-    amount = bid.amount
+def insertPaymentInfo(request):
     if request.method == 'POST':
-        form = insertPaymentInfo(data=request.POST, initial={
-        'amount': amount
-    })
+        form = PaymentForm(data=request.POST)
         if form.is_valid():
             pay = form.save(commit=False)
             pay.user = request.user
             pay.save()
-        return render(request, 'store/payment/reviewPayment.html', {'form': PaymentForm(instance=form), 'bid_amount': bid_amount})
+    else:
+        form = PaymentForm()
+        return render(request, 'store/payment/pay.html', {'form': form})
 
 
 def reviewPayment(request):
@@ -80,7 +79,7 @@ def rateSeller(request):
 @login_required
 def createItem(request):
     if request.method == 'POST':
-        form = ItemCreateForm(data=request.POST)
+        form = PaymentForm(data=request.POST)
         if form.is_valid():
             item = form.save(commit=False)
             item.user = request.user
@@ -89,7 +88,7 @@ def createItem(request):
             item_image.save()
             return redirect('browseItems')
     else:
-        form = ItemCreateForm()
+        form = PaymentForm()
         return render(request, 'Store/product/sell2.html', {
             'form': form
         })

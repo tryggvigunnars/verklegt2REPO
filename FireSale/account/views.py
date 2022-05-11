@@ -45,15 +45,18 @@ def profile(request):
     context = {'profile': Profile.objects.filter(user=request.user).first()}
     return render(request, 'Account/profile.html', context)
 
+
 @login_required
 def myListings(request):
     context = {'items': Item.objects.filter(user=request.user)}
     return render(request, 'account/myListings.html', context)
 
+
 @login_required
 def myBids(request):
     context = {'bids': Bids.objects.filter(user=request.user)}
     return render(request, 'account/myBids.html', context)
+
 
 def deleteListing(request, id):
     listing = get_object_or_404(Item, pk=id)
