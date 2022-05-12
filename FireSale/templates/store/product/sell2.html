@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
     <link rel="stylesheet" href="{% static 'css/registerStyle.css'  %}"/>
+    <h1>Sell product:</h1>
     <form class="container" action="{% url 'create_item' %}" method="post">
         {% csrf_token %}
         {{ form }}
