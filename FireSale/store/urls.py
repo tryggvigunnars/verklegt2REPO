@@ -13,4 +13,6 @@ urlpatterns = [
     path('acceptOffer/<int:id>', views.acceptBid, name='acceptOffer'),
     path('declineOffer/<int:id>', views.declineOffer, name='declineOffer'),
     path('deletePaidListing/<int:id>', views.deletePaidListing, name='deletePaidListing'),
+
+    path('editPaymentInfo/<int:id>', views.editPaymentInfo, name='editPaymentInfo'),
 ]
