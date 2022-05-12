@@ -40,12 +40,13 @@ def item(request):
 
 def itemDetails(request, id):
     item = get_object_or_404(Item, pk=id)
+    itemName = item.item_name[:3].lower()
     form = sendOfferForm(initial={
         'item': item
     })
     bids = Bids.objects.filter(item_id=id)
     highest_offer = bids.aggregate(Max('amount'))
-    context = { 'item': item, 'items': Item.objects.all(), 'form': form, 'highest_offer': highest_offer}
+    context = { 'item': item, 'items': Item.objects.filter(item_name__contains=itemName).exclude(pk=id), 'form': form, 'highest_offer': highest_offer}
     return render(request, 'store/product/itemDetails.html', context)
 
 
