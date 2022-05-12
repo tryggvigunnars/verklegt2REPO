@@ -13,12 +13,24 @@ from store.models import *
 # Create your views here.
 
 def browse(request):
+    if 'order_by' in request.GET:
+        order_by_value = request.GET['order_by']
+        ordered_items = Item.objects.all().order_by(str(order_by_value))
+        things = [{
+            'id': x.id,
+            'name': x.item_name,
+            'image': x.itemimage_set.first().img if x.itemimage_set.first() is not None else '',
+            'user': x.user.username,
+            'location': x.location,
+            'price': x.price
+        } for x in ordered_items]
+        return JsonResponse({'data': things})
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
         filtered_list = Item.objects.filter(item_name__icontains=search_filter)
         things = [ {
             'id': x.id,
-            'item_name': x.item_name,
+            'name': x.item_name,
             'image': x.itemimage_set.first().img if x.itemimage_set.first() is not None else '',
             'user': x.user.username,
             'location': x.location,
@@ -30,7 +42,7 @@ def browse(request):
             return render(request, 'store/product/browsing.html', {
                 'items': filtered_list
             })
-    items = {'items': Item.objects.all().order_by('item_name')} #þurfum að breyta í html
+    items = {'items': Item.objects.all()} #þurfum að breyta í html
     return render(request, 'store/product/browsing.html', items)
 
 
