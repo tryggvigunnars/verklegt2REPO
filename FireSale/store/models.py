@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from account.models import *
+from django_countries.fields import CountryField
 
 
 # Create your models here.
@@ -27,7 +28,7 @@ class Payment(models.Model):
     address = models.CharField(max_length=250)
     city = models.CharField(max_length=250)
     location = models.CharField(max_length=250)
-    country = models.CharField(max_length=250)
+    country = CountryField()
     postalCode = models.IntegerField()
     cardNumber = models.IntegerField()
     cardMonth = models.IntegerField()

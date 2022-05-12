@@ -15,7 +15,7 @@ class UserInfo(models.Model):
 
 
 class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE) #change to user possibly
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=255, blank=True)
     bio = models.CharField(max_length=255, blank=True)
     img = models.CharField(max_length=9999, blank=True)
