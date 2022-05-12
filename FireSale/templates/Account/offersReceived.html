@@ -8,11 +8,15 @@
         <div class="itemInfo">
             <label for="bidAmount">Offer amount:</label>
             <p id="bidAmount">{{ bid.amount }}$</p>
+            {% if bid.status_id == 3 %}
+                <h3>Offer has been accepted</h3>
+            {% else %}
             <a href="{% url 'acceptOffer' bid.id%}" >
                 <input type="button" id="viewItem" value="Accept offer">
             </a>
             <a href="{% url 'declineOffer' bid.id%}" >
                 <input type="button" id="viewItem" value="Decline Offer">
             </a>
+            {% endif %}
         </div>
     </div>
