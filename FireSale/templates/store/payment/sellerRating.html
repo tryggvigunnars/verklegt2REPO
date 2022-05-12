@@ -4,13 +4,15 @@
 <link rel="stylesheet" href="{% static 'css/rateSellerStyle.css'  %}"/>
 <div class="container">
 <form  action="{% url 'rateSeller' item.id %}" method="post">
-    <h2>Review Seller</h2>
+    <h1>Payment Successful</h1>
+    <h2>Would you like to rate this seller?</h2>
     {% csrf_token %}
     {{ form }}
 
     <input type="submit" value="send" class="btn btn-primary mt-2" style="clear:both; margin: 10px 0"/>
-
-    <input type="submit" value="No thanks! i skip">
 </form>
+
+    <a type="submit" class="btn btn-primary mt-2" href="{% url 'deleteAfterPayment' item.id %}" >No thanks! i skip</a>
+
 </div>
 {% endblock %}

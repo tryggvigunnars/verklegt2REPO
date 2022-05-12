@@ -74,17 +74,31 @@ def pay(request):
 
 def insertPaymentInfo(request, id):
     bid = get_object_or_404(Bids, pk=id)
-    if request.method == 'POST':
-        form = PaymentForm(data=request.POST)
-        if form.is_valid():
-            pay = form.save(commit=False)
-            pay.user = request.user
-            pay.bid = bid
-            pay.save()
-            return redirect('reviewPayment', pay.id)
+    pay = Payment.objects.filter(user=request.user).first()
+    if pay:
+        if request.method == 'POST':
+                form = PaymentForm(instance=pay, data=request.POST)
+                if form.is_valid():
+                    pay = form.save(commit=False)
+                    pay.user = request.user
+                    pay.save()
+                    return redirect('reviewPayment', pay.id)
+        else:
+            return render(request, 'store/payment/pay.html', {'form': PaymentForm(instance=pay), 'bid': bid})
     else:
-        form = PaymentForm()
-        return render(request, 'store/payment/pay.html', {'form': form, 'bid': bid})
+        if request.method == 'POST':
+            form = PaymentForm(request.POST)
+            if form.is_valid():
+                pay = form.save(commit=False)
+                pay.user = request.user
+                pay.bid = bid
+                pay.save()
+                return redirect('reviewPayment', pay.id)
+        else:
+            form = PaymentForm()
+            return render(request, 'store/payment/pay.html', {'form': form, 'bid': bid})
+
+
 
 
 def reviewPayment(request, id):
