@@ -5,7 +5,7 @@ from django. shortcuts import render, redirect
 from account.Forms.profileForm import ProfileForm
 from account.Forms.sellerRatingForm import *
 from account.models import Profile, Item
-from store.models import Bids
+from store.models import Bids, Payment
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 # Create your views here.
@@ -87,6 +87,7 @@ def getNotifications(request):
 
 def rateSeller(request, id):
     item = get_object_or_404(Item, pk=id)
+    payment = Payment.objects.filter(Payment, user=request.user)
     if request.method == 'POST':
         form = SellerReviewForm(data=request.POST)
         if form.is_valid():
@@ -94,7 +95,16 @@ def rateSeller(request, id):
             rating.seller = item.user
             rating.save()
             item.delete()
+            payment.delete()
             return redirect('browseItems')
     else:
         form = SellerReviewForm()
         return render(request, 'store/payment/sellerRating.html', {'form': form, 'item': item})
+
+def deleteAfterPayment(request, id):
+    item = get_object_or_404(Item, pk=id)
+    payment = Payment.objects.filter(user=request.user)
+    item.delete()
+    payment.delete()
+    return redirect('browseItems')
+
