@@ -52,12 +52,13 @@ def item(request):
 
 def itemDetails(request, id):
     item = get_object_or_404(Item, pk=id)
+    itemName = item.item_name[:3].lower()
     form = sendOfferForm(initial={
         'item': item
     })
     bids = Bids.objects.filter(item_id=id)
     highest_offer = bids.aggregate(Max('amount'))
-    context = { 'item': item, 'items': Item.objects.all(), 'form': form, 'highest_offer': highest_offer}
+    context = { 'item': item, 'items': Item.objects.filter(item_name__contains=itemName).exclude(pk=id), 'form': form, 'highest_offer': highest_offer}
     return render(request, 'store/product/itemDetails.html', context)
 
 
@@ -94,6 +95,7 @@ def reviewPayment(request, id):
 @login_required
 def rateSeller(request):
     return render(request, 'store/payment/sellerRating.html')
+
 
 
 @login_required
@@ -133,6 +135,11 @@ def deletePaidListing(request, id):
 
 def acceptBid(request, id):
     bid = get_object_or_404(Bids, pk=id)
+    item = get_object_or_404(Item, pk=bid.item_id)
+    bids = Bids.objects.filter(item_id=item.id)
+    for b in bids:
+        b.status = get_object_or_404(Status, pk=2)
+        b.save()
     bid.status = get_object_or_404(Status, pk=3)
     bid.save()
     return redirect('myListingDetails', bid.item_id)
@@ -143,4 +150,7 @@ def declineOffer(request, id):
     bid.status = get_object_or_404(Status, pk=2)
     bid.save()
     return redirect('myListingDetails', bid.item_id)
+
+
+
 

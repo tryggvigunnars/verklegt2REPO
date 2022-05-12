@@ -12,9 +12,7 @@ class UserInfo(models.Model):
     def __str__(self):
         return str(self.user)
 
-class Ratings(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    rating = models.IntegerField()
+
 
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE) #change to user possibly
@@ -47,12 +45,6 @@ class ItemImage(models.Model):
     img = models.CharField(max_length=9999)
 
 
-class Rating(models.Model):
-    User = models.ForeignKey(User, on_delete=models.CASCADE)
+class SellerRating(models.Model):
+    seller = models.ForeignKey(User, on_delete=models.CASCADE)
     rating = models.IntegerField()
-
-
-
-
-
-

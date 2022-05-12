@@ -5,12 +5,17 @@
         <h1>Current Bids</h1>
             {% for bid in bids %}
                 {% include 'Account/myBidsItem.html' %}
+            {% empty %}
+                 <h3>No current bids available</h3>
             {% endfor %}
         </div>
         <div class="listing-container">
-        <h1>My Listings</h1>
+        <h1>My Offers</h1>
+
             {% for bid in offers %}
                 {% include 'Account/notificationsOffersReceived.html' %}
+            {% empty %}
+                <h3>No current offers available</h3>
             {% endfor %}
         </div>
     </div>

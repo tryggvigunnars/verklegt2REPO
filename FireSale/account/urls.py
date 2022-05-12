@@ -13,5 +13,8 @@ urlpatterns = [
     path('myListings/<int:id>', views.myListingDetails, name="myListingDetails"),
     path('myBids/', views.myBids, name="myBids"),
     path('deleteListing/<int:id>', views.deleteListing, name="deleteListing"),
-    path('notifications/', views.getNotifications, name="notifications")
+    path('notifications/', views.getNotifications, name="notifications"),
+
+    path('payment/rateSeller/<int:id>', views.rateSeller, name="rateSeller"),
+
 ]

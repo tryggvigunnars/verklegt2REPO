@@ -3,40 +3,14 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/rateSellerStyle.css'  %}"/>
 <div class="container">
-<form>
+<form  action="{% url 'rateSeller' item.id %}" method="post">
     <h2>Review Seller</h2>
-    <input type="radio" id="review" name="seller review" value="1 star">
-    <label for="review">
-        <i class="fa-solid fa-star"></i>
-    </label><br>
-    <input type="radio" id="review" name="seller review" value="2 star">
-    <label for="review">
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-    </label><br>
-    <input type="radio" id="review" name="seller review" value="3 star">
-    <label for="review">
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-    </label><br>
-    <input type="radio" id="review" name="seller review" value="4 star">
-    <label for="review">
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-    </label><br>
-    <input type="radio" id="review" name="seller review" value="5 star">
-    <label for="review">
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-        <i class="fa-solid fa-star"></i>
-    </label><br>
+    {% csrf_token %}
+    {{ form }}
 
-    <input type="submit" value="send!">
+    <input type="submit" value="send" class="btn btn-primary mt-2" style="clear:both; margin: 10px 0"/>
+
+    <input type="submit" value="No thanks! i skip">
 </form>
 </div>
 {% endblock %}
