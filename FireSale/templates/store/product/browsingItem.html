@@ -1,3 +1,5 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/ItemStyle.css' %}"/>
 <div class="item">
     <div class="itemPicture"> <img src="{{ info.itemimage_set.first.img }}"></div>
     <div class="itemInfo">
