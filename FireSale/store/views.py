@@ -123,6 +123,11 @@ def deletePaidListing(request, id):
 
 def acceptBid(request, id):
     bid = get_object_or_404(Bids, pk=id)
+    item = get_object_or_404(Item, pk=bid.item_id)
+    bids = Bids.objects.filter(item_id=item.id)
+    for b in bids:
+        b.status = get_object_or_404(Status, pk=2)
+        b.save()
     bid.status = get_object_or_404(Status, pk=3)
     bid.save()
     return redirect('myListingDetails', bid.item_id)
