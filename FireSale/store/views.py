@@ -9,13 +9,11 @@ from store.forms.paymentForm import PaymentForm
 from django.http import JsonResponse
 from django.db.models import Avg, Max, Min
 from django.contrib.auth.decorators import login_required
-
-# Create your views here.
 from store.models import *
-
+# Create your views here.
 
 def browse(request):
-    if 'search_filter' in request.GET: #Það verður að bæta við seller og image
+    if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
         filtered_list = Item.objects.filter(item_name__icontains=search_filter)
         things = [ {
@@ -32,7 +30,7 @@ def browse(request):
             return render(request, 'store/product/browsing.html', {
                 'items': filtered_list
             })
-    items = {'items': Item.objects.all()}
+    items = {'items': Item.objects.all().order_by('item_name')} #þurfum að breyta í html
     return render(request, 'store/product/browsing.html', items)
 
 
@@ -50,9 +48,11 @@ def itemDetails(request, id):
     context = { 'item': item, 'items': Item.objects.all(), 'form': form, 'highest_offer': highest_offer}
     return render(request, 'store/product/itemDetails.html', context)
 
+
 @login_required
 def sellProduct(request):
     return render(request, 'store/product/sell2.html')
+
 
 @login_required
 def pay(request):
@@ -80,6 +80,12 @@ def reviewPayment(request, id):
 
 
 @login_required
+def rateSeller(request):
+    return render(request, 'store/payment/sellerRating.html')
+
+
+
+@login_required
 def createItem(request):
     if request.method == 'POST':
         form = ItemCreateForm(data=request.POST)
@@ -95,6 +101,8 @@ def createItem(request):
         return render(request, 'Store/product/sell2.html', {
             'form': form
         })
+
+
 @login_required
 def sendOffer(request):
     if request.method == 'POST':
@@ -106,11 +114,11 @@ def sendOffer(request):
             return redirect('browseItems')
 
 
-
 def deletePaidListing(request, id):
     listing = get_object_or_404(Item, pk=id)
     listing.delete()
     return redirect('rateSeller')
+
 
 def acceptBid(request, id):
     bid = get_object_or_404(Bids, pk=id)

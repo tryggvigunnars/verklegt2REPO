@@ -12,13 +12,19 @@
                         </svg>
                     </button>
                 </div>
-           </div>
+           </div> <br>
+            <div class="filter-dropdown">
+                  <label for="dropdown-menu">Order by:</label>
+                  <select class="filter-items">
+                        <option></option>
+                        <option name="item_name">Name</option>
+                        <option name="price">Price</option>
+                  </select>
+            </div>
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" id="displayed_items">
-
                 {% for info in items %}
                     {% include 'store/product/browsingItem.html' with info=info%}
                 {% endfor %}
-
             </div>
         </div>
     </body>
