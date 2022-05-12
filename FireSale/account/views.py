@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from django.db.models import Max
+from django.db.models import Max, Avg
 from django. shortcuts import render, redirect
 from account.Forms.profileForm import ProfileForm
 from account.Forms.sellerRatingForm import *
@@ -96,6 +96,8 @@ def rateSeller(request, id):
             rating.save()
             item.delete()
             payment.delete()
+            profile = get_object_or_404(Profile, user=request.user)
+            profile.avg_rating = SellerRating.objects.filter(user=request.user).aggregate(Avg('rating'))
             return redirect('browseItems')
     else:
         form = SellerReviewForm()
@@ -107,4 +109,9 @@ def deleteAfterPayment(request, id):
     item.delete()
     payment.delete()
     return redirect('browseItems')
+
+def getAvgRating(request):
+    user = request.user
+    avg_rating = SellerRating.objects.filter(user=user).aggregate(Avg('rating'))
+    return avg_rating
 

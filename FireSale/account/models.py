@@ -8,6 +8,7 @@ class UserInfo(models.Model):
     address = models.CharField(max_length=255)
     zip = models.IntegerField()
     dob = models.DateField()
+    avg_rating = models.IntegerField(default=0)
 
     def __str__(self):
         return str(self.user)
@@ -19,6 +20,7 @@ class Profile(models.Model):
     location = models.CharField(max_length=255, blank=True)
     bio = models.CharField(max_length=255, blank=True)
     img = models.CharField(max_length=9999, blank=True)
+    avg_rating = models.IntegerField(default=0)
 
 
 class Condition(models.Model):
