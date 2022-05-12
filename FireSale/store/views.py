@@ -78,9 +78,6 @@ def reviewPayment(request, id):
     payment = get_object_or_404(Payment, pk=id)
     return render(request, "store/payment/reviewPayment.html", {'payment': payment})
 
-@login_required
-def rateSeller(request):
-    return render(request, 'store/payment/sellerRating.html')
 
 @login_required
 def createItem(request):
@@ -127,4 +124,7 @@ def declineOffer(request, id):
     bid.status = get_object_or_404(Status, pk=2)
     bid.save()
     return redirect('myListingDetails', bid.item_id)
+
+
+
 

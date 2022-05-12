@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Max
 from django. shortcuts import render, redirect
 from account.Forms.profileForm import ProfileForm
+from account.Forms.sellerRatingForm import *
 from account.models import Profile, Item
 from store.models import Bids
 from django.http import HttpResponse
@@ -82,3 +83,18 @@ def getNotifications(request):
     offers = Bids.objects.filter(item_id__in=items).order_by('item_id','-amount')
     context = {'bids': bids, 'offers': offers}
     return render(request, 'Account/notification.html', context)
+
+
+def rateSeller(request, id):
+    item = get_object_or_404(Item, pk=id)
+    if request.method == 'POST':
+        form = SellerReviewForm(data=request.POST)
+        if form.is_valid():
+            rating = form.save(commit=False)
+            rating.seller = item.user
+            rating.save()
+            item.delete()
+            return redirect('browseItems')
+    else:
+        form = SellerReviewForm()
+        return render(request, 'store/payment/sellerRating.html', {'form': form, 'item': item})

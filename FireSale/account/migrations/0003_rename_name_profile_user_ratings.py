@@ -17,13 +17,5 @@ class Migration(migrations.Migration):
             model_name='profile',
             old_name='name',
             new_name='user',
-        ),
-        migrations.CreateModel(
-            name='Ratings',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('rating', models.IntegerField()),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-            ],
-        ),
+        )
     ]
