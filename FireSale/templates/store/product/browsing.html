@@ -1,5 +1,7 @@
 {% extends 'headers/base_header.html' %}
 {% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/ItemStyle.css' %}"/>
     <h1>Browsing items</h1>
     <body>
         <div class="container px-4 px-lg-5 mt-5">
@@ -15,10 +17,10 @@
            </div> <br>
             <div class="filter-dropdown">
                   <label for="dropdown-menu">Order by:</label>
-                  <select class="filter-items">
-                        <option></option>
-                        <option name="item_name">Name</option>
-                        <option name="price">Price</option>
+                  <select title="filter-items" id="order-by">
+                        <option name="ignore">Please select an order</option>
+                        <option name="item_name" value="item_name">Name</option>
+                        <option name="price" value="price">Price</option>
                   </select>
             </div>
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" id="displayed_items">

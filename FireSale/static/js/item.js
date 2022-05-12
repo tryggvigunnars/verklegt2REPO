@@ -1,50 +1,48 @@
 $(document).ready(function() {
-    $('.btn-search').on('click', function(e){
-        e.preventDefault();
-        var searchText = $('#choices-text-preset-values').val();
+    const filterResults = (basedOn, queryParam, onSuccess = () => {}) => {
         $.ajax({
-            url: '/store?search_filter=' + searchText,
+            url: `/store/?${queryParam}=${basedOn}`,
             type: 'GET',
             success: function(resp) {
+                console.log("here")
                 var newHtml = resp.data.map(d => {
-                    console.log(d);
                     return `<div class="item">
-                                <div className="itemPicture"><img src="${d.image}" style="width: 80px;">                           
+                                <div class="itemPicture"><img src="${d.image}"></div>                           
                                 <div class="itemInfo">
-                                   <h3 className="productName">Product: ${d.item_name}</h3>
-                                   <h6 className="sellerName">Seller name: ${d.user}</h6>
-                                   <h6 className="sellerLocation">Location: ${d.location}</h6>
+                                    <h3 class="productName">Product: ${d.name}</h3>
+                                    <h6 class="sellerName">Seller name: ${d.user}</h6>
+                                    <h6 class="sellerLocation">Location: ${d.location}</h6>
                                 </div>
-                                <div className="itemInfo2">
-                                    <h1 className="listingPrice">${d.price}$</h1>
-                                     <a href="/store/${d.id}">
-                                        <input type="button" id="viewItem" value="View item details"
-                                     </a>
+                                <div class="itemInfo2">
+                                    <h1 class="listingPrice">${d.price}$</h1>
+                                    <a href="/store/${d.id}">
+                                        <input type="button" id="viewItem" value="View item details">
+                                    </a>
                                 </div>  
                             </div>`
+
                 });
+                console.log(newHtml)
                 $('#displayed_items').html(newHtml.join(''));
-
-                /*<div className="item">
-                    <div className="itemPicture"><img src="{{ info.itemimage_set.first.img }}" style="width: 80px;">
-                    </div>
-                    <div className="itemInfo">
-                        <h3 className="productName">Product: {{info.item_name}}</h3>
-                        <h6 className="sellerName">Seller name: {{info.user}}</h6>
-                        <h6 className="sellerLocation">Location: {{info.location}}</h6>
-                    </div>
-                    <div className="itemInfo2">
-                        <h1 className="listingPrice">{{info.price}} kr.</h1>
-                        <input type="button" href="/store/{{ info.id }}" id="viewItem" value="View item details">
-
-                    </div>
-                    <a href="/store/${d.id}">
-                </div>*/
-                $('#choices-text-preset-values').val('');
+                //onSuccess();
             },
             error: function(xhr, status, error) {
                 console.error(error);
             }
-        })
+        });
+    };
+
+    $('.btn-search').on('click', function(e){
+        e.preventDefault();
+        const searchText = $('#choices-text-preset-values').val();
+        filterResults(searchText, 'search_filter', () => {
+            $('#choices-text-preset-values').val('');
+        });
+    });
+
+    $('#order-by').on('change', function (e) {
+       const value = this.value;
+       console.log(value)
+       filterResults(value, 'order_by');
     });
 });
