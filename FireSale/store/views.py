@@ -15,7 +15,7 @@ from store.models import *
 def browse(request):
     if 'order_by' in request.GET:
         order_by_value = request.GET['order_by']
-        ordered_items = Item.objects.all().order_by(str(order_by_value))
+        ordered_items = Item.objects.all().exclude(accepted=True).order_by(str(order_by_value))
         things = [{
             'id': x.id,
             'name': x.item_name,
@@ -27,7 +27,7 @@ def browse(request):
         return JsonResponse({'data': things})
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
-        filtered_list = Item.objects.filter(item_name__icontains=search_filter)
+        filtered_list = Item.objects.filter(item_name__icontains=search_filter).exclude(accepted=True)
         things = [ {
             'id': x.id,
             'name': x.item_name,
@@ -42,7 +42,7 @@ def browse(request):
             return render(request, 'store/product/browsing.html', {
                 'items': filtered_list
             })
-    items = {'items': Item.objects.all()} #þurfum að breyta í html
+    items = {'items': Item.objects.all().exclude(accepted=True)} #þurfum að breyta í html
     return render(request, 'store/product/browsing.html', items)
 
 
@@ -155,7 +155,9 @@ def acceptBid(request, id):
         b.status = get_object_or_404(Status, pk=2)
         b.save()
     bid.status = get_object_or_404(Status, pk=3)
+    item.accepted = True
     bid.save()
+    item.save()
     return redirect('myListingDetails', bid.item_id)
 
 

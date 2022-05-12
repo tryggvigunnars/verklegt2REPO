@@ -8,7 +8,7 @@ class ItemCreateForm(ModelForm):
 
     class Meta:
         model = Item
-        exclude = ['id', 'user']
+        exclude = ['id', 'user', 'accepted']
         widgets = {
             'item_name': widgets.TextInput(attrs={'class': 'form-control'}),
             'price': widgets.NumberInput(attrs={'class': 'form-control'}),
