@@ -17,6 +17,5 @@ urlpatterns = [
 
     path('payment/rateSeller/<int:id>', views.rateSeller, name="rateSeller"),
     path('payment/rateseller/deleteFunc/<int:id>', views.deleteAfterPayment, name="deleteAfterPayment"),
-    path('getAvgRating', views.getAvgRating, name="getAvgRating")
 
 ]

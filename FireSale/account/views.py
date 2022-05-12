@@ -87,17 +87,18 @@ def getNotifications(request):
 
 def rateSeller(request, id):
     item = get_object_or_404(Item, pk=id)
-    payment = Payment.objects.filter(Payment, user=request.user)
+    payment = Payment.objects.get(user=request.user)
     if request.method == 'POST':
         form = SellerReviewForm(data=request.POST)
         if form.is_valid():
             rating = form.save(commit=False)
             rating.seller = item.user
             rating.save()
+            profile = get_object_or_404(Profile, user=item.user)
+            avgRating = SellerRating.objects.filter(seller=item.user).aggregate(Avg('rating'))['rating__avg']
+            profile.avg_rating = int(round((avgRating),0))
             item.delete()
             payment.delete()
-            profile = get_object_or_404(Profile, user=request.user)
-            profile.avg_rating = SellerRating.objects.filter(user=request.user).aggregate(Avg('rating'))
             return redirect('browseItems')
     else:
         form = SellerReviewForm()
@@ -110,8 +111,5 @@ def deleteAfterPayment(request, id):
     payment.delete()
     return redirect('browseItems')
 
-def getAvgRating(request):
-    user = request.user
-    avg_rating = SellerRating.objects.filter(user=user).aggregate(Avg('rating'))
-    return avg_rating
+
 

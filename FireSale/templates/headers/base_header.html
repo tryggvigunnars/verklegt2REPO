@@ -49,7 +49,7 @@
                   </ul>
                 </li>
               </ul>
-            <p>Avg rating: {{ user.profile.avg_rating }}</p>
+            <p class="avgRating">Avg rating: {{ user.profile.avg_rating }}</p>
             {% if user.is_authenticated %}
                 <img src="{{ user.profile.img }}" alt="profile pic" class="profile-image" style="width: 8%; border-radius: 50%;" />
             {% endif %}

@@ -9,7 +9,7 @@ from store.forms.paymentForm import PaymentForm
 from django.http import JsonResponse
 from django.db.models import Avg, Max, Min
 from django.contrib.auth.decorators import login_required
-from store.models import *
+from store.models import Bids, Item, Payment, Status
 # Create your views here.
 
 def browse(request):
@@ -46,9 +46,9 @@ def browse(request):
     return render(request, 'store/product/browsing.html', items)
 
 
-def item(request):
+"""def item(request):
     return render(request, 'store/product/browsingItem.html', context={'items': items})
-
+"""
 
 def itemDetails(request, id):
     item = get_object_or_404(Item, pk=id)
@@ -73,7 +73,7 @@ def pay(request):
 
 
 def insertPaymentInfo(request, id):
-    bid = get_object_or_404(Bids, pk=id)
+    bid = Bids.objects.get(id=id)
     pay = Payment.objects.filter(user=request.user).first()
     if pay:
         if request.method == 'POST':

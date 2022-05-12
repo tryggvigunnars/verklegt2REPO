@@ -5,12 +5,12 @@ from django import forms
 class PaymentForm(ModelForm):
     class Meta:
         model = Payment
-        exclude = ['id', 'bid']
+        exclude = ['id', 'bid', 'user']
         widgets = {
             'address': widgets.TextInput(attrs={'class': 'form-control'}),
             'city': widgets.TextInput(attrs={'class': 'form-control'}),
             'location': widgets.TextInput(attrs={'class': 'form-control'}),
-            'country': widgets.TextInput(attrs={'class': 'form-control'}),
+            'country': widgets.Select(attrs={'class': 'form-control'}),
             'postalCode': widgets.NumberInput(attrs={'class': 'form-control'}),
             'cardNumber': widgets.NumberInput(attrs={'class': 'form-control'}),
             'cardMonth': widgets.NumberInput(attrs={'class': 'form-control'}),

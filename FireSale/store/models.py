@@ -18,9 +18,6 @@ class Bids(models.Model):
     amount = models.FloatField()
     status = models.ForeignKey(Status, on_delete=models.CASCADE, default=1)
 
-    def __str__(self):
-        return self.item
-
 
 class Payment(models.Model):
     bid = models.ForeignKey(Bids, on_delete=models.CASCADE)

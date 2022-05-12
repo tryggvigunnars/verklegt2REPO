@@ -4,7 +4,7 @@ from account.models import Profile
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        exclude = ['id', 'user']
+        exclude = ['id', 'user', 'avg_rating']
         widgets = {
             'img': widgets.TextInput(attrs={'class': 'form-control'}),
             'location': widgets.TextInput(attrs={'class': 'form-control'}),
