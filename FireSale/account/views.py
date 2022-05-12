@@ -97,6 +97,7 @@ def rateSeller(request, id):
             profile = get_object_or_404(Profile, user=item.user)
             avgRating = SellerRating.objects.filter(seller=item.user).aggregate(Avg('rating'))['rating__avg']
             profile.avg_rating = int(round((avgRating),0))
+            profile.save()
             item.delete()
             payment.delete()
             return redirect('browseItems')
