@@ -1,12 +1,9 @@
 {% extends 'headers/base_header.html' %}
+{% block content %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/itemDetailsStyle.css' %}"/>
-
-{% block content %}
-    <body>
         <div class="fullItemView">
-            <div class="item">
-
+            <div class="currItem">
                 <img class="itemPicture" src="{{  item.itemimage_set.first.img  }}" alt="">
 
                 <div class="offerDetails">
@@ -45,5 +42,4 @@
                     {% include 'Account/offersReceived.html' with bid=bid%}
             {% endfor %}
         </div>
-    </body>
 {% endblock %}

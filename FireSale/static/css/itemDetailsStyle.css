@@ -1,11 +1,17 @@
 .fullItemView {
-    display: flex;
-    margin-left: 20%;
+    width: 70%;
+    margin-left: 10%;
     margin-top: 30px;
+    background-color: whitesmoke;
+    border: solid black;
 }
 
-.item {
-    margin: 10px;
+.currItem {
+    display: flex;
+}
+
+.currItem div{
+    padding: 10px;
 }
 
 .label {
@@ -13,7 +19,15 @@
 }
 
 .itemPicture {
-    max-width: 200px;
+    width: 20%;
+    height: 100%;
+    padding-top: 10%;
+}
+
+.itemPicture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 
