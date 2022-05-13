@@ -10,10 +10,6 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 # Create your views here.
 
-user_info = [
-    {'name': 'Kalli', }
-]
-
 def login(request):
     return render(request, 'Account/login.html')
 
@@ -42,6 +38,7 @@ def editprofile(request):
         'form': ProfileForm(instance=profile)
     })
 
+
 @login_required
 def profile(request):
     context = {'profile': Profile.objects.filter(user=request.user).first()}
@@ -67,7 +64,7 @@ def deleteListing(request, id):
     return redirect('myListings')
 
 
-
+@login_required
 def myListingDetails(request, id):
     item = get_object_or_404(Item, pk=id)
     bids = Bids.objects.filter(item_id=id).exclude(status_id=2).order_by('-amount')
@@ -76,6 +73,7 @@ def myListingDetails(request, id):
     return render(request, 'Account/myListingDetails.html', context)
 
 
+@login_required
 def getNotifications(request):
     user = request.user
     bids = Bids.objects.filter(user=user).exclude(status_id=1)
@@ -85,6 +83,7 @@ def getNotifications(request):
     return render(request, 'Account/notification.html', context)
 
 
+@login_required
 def rateSeller(request, id):
     item = get_object_or_404(Item, pk=id)
     payment = Payment.objects.get(user=request.user)
@@ -105,6 +104,8 @@ def rateSeller(request, id):
         form = SellerReviewForm()
         return render(request, 'store/payment/sellerRating.html', {'form': form, 'item': item})
 
+
+@login_required
 def deleteAfterPayment(request, id):
     item = get_object_or_404(Item, pk=id)
     payment = Payment.objects.filter(user=request.user)

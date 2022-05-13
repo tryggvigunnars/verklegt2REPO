@@ -42,7 +42,7 @@ def browse(request):
             return render(request, 'store/product/browsing.html', {
                 'items': filtered_list
             })
-    items = {'items': Item.objects.all().exclude(accepted=True)} #þurfum að breyta í html
+    items = {'items': Item.objects.all().exclude(accepted=True)}
     return render(request, 'store/product/browsing.html', items)
 
 
@@ -72,6 +72,7 @@ def pay(request):
     return render(request, 'store/payment/pay.html')
 
 
+@login_required
 def insertPaymentInfo(request, id):
     bid = Bids.objects.get(id=id)
     pay = Payment.objects.filter(user=request.user).first()
@@ -99,8 +100,7 @@ def insertPaymentInfo(request, id):
             return render(request, 'store/payment/pay.html', {'form': form, 'bid': bid})
 
 
-
-
+@login_required
 def reviewPayment(request, id):
     payment = get_object_or_404(Payment, pk=id)
     return render(request, "store/payment/reviewPayment.html", {'payment': payment})
@@ -109,7 +109,6 @@ def reviewPayment(request, id):
 @login_required
 def rateSeller(request):
     return render(request, 'store/payment/sellerRating.html')
-
 
 
 @login_required
@@ -141,12 +140,14 @@ def sendOffer(request):
             return redirect('browseItems')
 
 
+@login_required
 def deletePaidListing(request, id):
     listing = get_object_or_404(Item, pk=id)
     listing.delete()
     return redirect('rateSeller')
 
 
+@login_required
 def acceptBid(request, id):
     bid = get_object_or_404(Bids, pk=id)
     item = get_object_or_404(Item, pk=bid.item_id)
@@ -161,6 +162,7 @@ def acceptBid(request, id):
     return redirect('myListingDetails', bid.item_id)
 
 
+@login_required
 def declineOffer(request, id):
     bid = get_object_or_404(Bids, pk=id)
     bid.status = get_object_or_404(Status, pk=2)
