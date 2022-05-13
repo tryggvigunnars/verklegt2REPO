@@ -1,9 +1,11 @@
 {% extends 'headers/base_header.html' %}
+{% load static %}
 {% block content %}
     <h1>My Profile</h1>
-    <section class="vh-100" style="background-color: #f4f5f7;">
+    <section class="vh-100">
+      <link rel="stylesheet" href="{% static 'css/profileStyle.css' %}"/>
       <div class="container py-5 h-100">
-            <div class="card mb-3" style="border-radius: .5rem;">
+            <div class="card mb-3">
               <div class="row g-0">
                 <div id="imageContainer" class="col-md-4 gradient-custom text-center text-white" >
 

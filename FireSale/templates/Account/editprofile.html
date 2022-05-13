@@ -1,7 +1,10 @@
 {% extends 'headers/base_header.html' %}
-{% block content %}<section class="vh-100" style="background-color: #f4f5f7;">
+{% load static %}
+{% block content %}
+    <section class="vh-100">
+    <link rel="stylesheet" href="{% static 'css/profileStyle.css' %}"/>
       <div class="container py-5 h-100">
-            <div class="card mb-3" style="border-radius: .5rem;">
+            <div class="card mb-3">
                 <form class="form form-horizontal" method="post">
                     {% csrf_token %}
                     {{ form }}
