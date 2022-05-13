@@ -5,9 +5,11 @@
  <body>
         <div class="fullItemView">
             <div class="currItem">
-
-                <img class="itemPicture" src="{{  item.itemimage_set.first.img  }}" alt="">
-
+                <div class="imgContainer">
+                    {% for img in item.itemimage_set.all %}
+                        <img class="itemPicture" src="{{  img.img }}" alt="">
+                    {% endfor %}
+                </div>
                 <div class="offerDetails">
                     <h3 class="highestOffer">Current Highest offer: </h3>
                     <p class="highAmount">{{ highest_offer.amount__max }}$</p>

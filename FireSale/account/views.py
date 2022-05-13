@@ -20,6 +20,10 @@ def register(request):
         if form.is_valid():
             form.save()
             return redirect('login')
+        else:
+            return render(request, 'Account/register.html', {
+                'form': UserCreationForm()
+            })
     return render(request, 'Account/register.html', {
         'form': UserCreationForm()
     })
@@ -100,6 +104,9 @@ def rateSeller(request, id):
             item.delete()
             payment.delete()
             return redirect('browseItems')
+        else:
+            form = SellerReviewForm()
+            return render(request, 'store/payment/sellerRating.html', {'form': form, 'item': item})
     else:
         form = SellerReviewForm()
         return render(request, 'store/payment/sellerRating.html', {'form': form, 'item': item})

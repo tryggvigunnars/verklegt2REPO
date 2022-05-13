@@ -15,7 +15,7 @@ from store.models import Bids, Item, Payment, Status
 def browse(request):
     if 'order_by' in request.GET:
         order_by_value = request.GET['order_by']
-        ordered_items = Item.objects.all().exclude(accepted=True).order_by(str(order_by_value))
+        ordered_items = Item.objects.all().exclude(accepted=True).exclude(user=request.user).order_by(str(order_by_value))
         things = [{
             'id': x.id,
             'name': x.item_name,
@@ -27,7 +27,7 @@ def browse(request):
         return JsonResponse({'data': things})
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
-        filtered_list = Item.objects.filter(item_name__icontains=search_filter).exclude(accepted=True)
+        filtered_list = Item.objects.filter(item_name__icontains=search_filter).exclude(accepted=True).exclude(user=request.user)
         things = [ {
             'id': x.id,
             'name': x.item_name,
@@ -42,7 +42,7 @@ def browse(request):
             return render(request, 'store/product/browsing.html', {
                 'items': filtered_list
             })
-    items = {'items': Item.objects.all().exclude(accepted=True)}
+    items = {'items': Item.objects.all().exclude(accepted=True).exclude(user=request.user)}
     return render(request, 'store/product/browsing.html', items)
 
 
@@ -84,6 +84,7 @@ def insertPaymentInfo(request, id):
                     pay.user = request.user
                     pay.save()
                     return redirect('reviewPayment', pay.id)
+                return render(request, 'store/payment/pay.html', {'form': PaymentForm(instance=pay), 'bid': bid})
         else:
             return render(request, 'store/payment/pay.html', {'form': PaymentForm(instance=pay), 'bid': bid})
     else:
@@ -95,6 +96,9 @@ def insertPaymentInfo(request, id):
                 pay.bid = bid
                 pay.save()
                 return redirect('reviewPayment', pay.id)
+            else:
+                form = PaymentForm()
+                return render(request, 'store/payment/pay.html', {'form': form, 'bid': bid})
         else:
             form = PaymentForm()
             return render(request, 'store/payment/pay.html', {'form': form, 'bid': bid})
@@ -119,9 +123,18 @@ def createItem(request):
             item = form.save(commit=False)
             item.user = request.user
             item.save()
-            item_image = ItemImage(img=request.POST['image'], item=item)
-            item_image.save()
+            first_image = ItemImage(img=request.POST['first_image'], item=item)
+            first_image.save()
+            second_image = form.cleaned_data.get('second_image')
+            if second_image != '':
+                second_image = ItemImage(img=request.POST['second_image'], item=item)
+                second_image.save()
             return redirect('browseItems')
+        else:
+            form = ItemCreateForm()
+            return render(request, 'Store/product/sell2.html', {
+                'form': form
+            })
     else:
         form = ItemCreateForm()
         return render(request, 'Store/product/sell2.html', {
